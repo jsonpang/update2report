@@ -37,8 +37,12 @@ def test_cached_sample_generates_offline_without_llm(monkeypatch, tmp_path):
         'updates': [{'person':'Ari','project':'Atlas','done':['Ship'],'next':[],'blockers':[],'due_dates':[],'confidence':0.9}],
         'summaries': {'internal':'Atlas work moved forward.'}
     }), encoding='utf-8')
-    csv_file = tmp_path / 'tasks.csv'
+    csv_file = sample_dir / 'tasks.csv'
     csv_file.write_text('task,owner,project,due,status\nShip,Ari,Atlas,2026-10-12,done\n', encoding='utf-8')
+    cache_file = sample_dir / 'cache' / 'offline.json'
+    cache = json.loads(cache_file.read_text(encoding='utf-8'))
+    cache.update(version=service.CACHE_VERSION, fingerprint=service.input_fingerprint('cached notes',csv_file))
+    cache_file.write_text(json.dumps(cache),encoding='utf-8')
     monkeypatch.setattr(service, 'SAMPLE_DIR', sample_dir)
     monkeypatch.setattr(service, 'OUT_DIR', tmp_path / 'out')
     monkeypatch.delenv('LLM_BASE_URL', raising=False)
