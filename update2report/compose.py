@@ -1,4 +1,5 @@
 import re
+import json
 
 SYSTEM = "Write a concise weekly report summary from the supplied evidence. Never invent metrics, counts, percentages, dates, or numbers. Do not include digits or date references in the summary; keep it numeric-free."
 UNQUANTIFIED_COUNT_WORDS = {'multiple', 'several', 'few', 'couple', 'dozen', 'dozens', 'pair'}
@@ -33,9 +34,14 @@ def validate_summary_numbers(summary, stats, numeric_free=False):
         raise ValueError(f'Summary contains numbers absent from deterministic stats: {", ".join(unsupported)}')
 
 def compose_summary(client, updates, stats, tone):
-    user = (f"Tone: {tone}. Evidence: {[u.model_dump() for u in updates]}. Deterministic statistics: {stats}. "
+    grouped = {project:{'completed':stats.get('completion_items',{}).get(project,[]),
+                       'updates':[u.model_dump() for u in updates if u.project == project]}
+               for project in stats['projects']}
+    user = (f"Tone: {tone}. Evidence grouped by project: {json.dumps(grouped,ensure_ascii=False)}. Deterministic statistics: {stats}. "
             "Write 2-4 concise sentences. For each project, mention all completed task names in completion_items, "
             "including CSV-only items. Keep pending work and blockers separate from completions. "
+            "Use a separate sentence for each project. Never move a blocker to another project. "
+            "Preserve blocker causes; do not reinterpret extraction confidence as deadline certainty. "
             "Never say a whole project is finished. Avoid unsupported judgments such as on track. "
             "Do not use digits or number words, even for counts found in statistics.")
     last_error = None

@@ -30,6 +30,12 @@ def test_extract_normalizes_scalar_null_fields_and_missing_identity():
     assert result[0].person == 'Unknown'
     assert result[0].project == 'Unassigned'
 
+def test_extract_accepts_valid_json_inside_a_single_markdown_fence():
+    client = FakeClient(['```json\n[{"person":"Mira","project":"Atlas","done":["QA checklist"],"confidence":0.9}]\n```'])
+    result = extract_updates(client,'Mira: QA checklist done')
+    assert result[0].done == ['QA checklist']
+    assert len(client.prompts) == 1
+
 def test_stats_counts_completion_overdue_blockers_and_no_update():
     updates = [UpdateBundle.model_validate({'person':'Ari','project':'Atlas','done':['Ship'],'next':[],'blockers':['API'],'due_dates':[],'confidence':0.8})]
     rows = [{'task':'Write spec','owner':'Bea','project':'Atlas','due':'2026-10-10','status':'in progress'}, {'task':'Ship','owner':'Ari','project':'Atlas','due':'2026-10-12','status':'done'}]
