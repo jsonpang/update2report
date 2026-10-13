@@ -35,7 +35,7 @@ def generate_report(text, csv_path=None, tone='internal', sample_id=None, client
         updates = [UpdateBundle.model_validate(row) for row in cached_rows]
     else:
         from .extract import extract_updates
-        updates = extract_updates(client, text)
+        updates = extract_updates(client, text, csv_task_rows(csv_path), report_date)
     if cache_file:
         cache_file.parent.mkdir(parents=True, exist_ok=True)
         cache_data = {'updates': [item.model_dump() for item in updates], 'summaries': cached.get('summaries', {}) if isinstance(cached, dict) else {}}
