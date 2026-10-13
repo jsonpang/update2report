@@ -1,7 +1,14 @@
+import os
+from pathlib import Path
+from dotenv import load_dotenv
 import gradio as gr
 from update2report.service import generate_report, load_sample, is_cached_sample, validate_input
 
 SAMPLES = ['sample-1', 'sample-2', 'sample-3']
+load_dotenv(Path(__file__).with_name('.env'), override=False)
+
+def launch_config():
+    return {'server_name':'0.0.0.0' if os.getenv('SPACE_ID') else '127.0.0.1', 'server_port':7860}
 
 def run_report(text, csv_file, tone, sample_id, live_count=0):
     text = text or ''
@@ -43,4 +50,4 @@ with gr.Blocks(title='Update2Report', analytics_enabled=False) as demo:
     generate.click(run_report, inputs=[updates,tasks,tone,sample_state,live_count], outputs=[summary,html_out,excel_out,stats_out,live_count], concurrency_limit=1, api_name=False)
 
 if __name__ == '__main__':
-    demo.launch(server_name='127.0.0.1', server_port=7860)
+    demo.queue(max_size=16).launch(**launch_config(), show_error=False, max_file_size='32kb')
