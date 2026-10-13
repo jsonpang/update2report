@@ -11,6 +11,7 @@ def render_html(payload):
     evidence = ''.join(f"<li>{escape(project)}: {escape(item['task'])} ({escape(', '.join(item['sources']))})</li>" for project, items in payload['stats'].get('completion_items', {}).items() for item in items)
     risks = ''.join(f"<li>Overdue: {escape(str(t.get('task','')))} ({escape(str(t.get('due','')))}), {escape(str(t.get('owner','')))}</li>" for t in payload['stats']['overdue'])
     risks += ''.join(f'<li>No update: {escape(person)}</li>' for person in payload['stats']['no_updates'])
+    risks += ''.join(f"<li>CSV status needs reconciliation: {escape(t.get('project',''))} / {escape(t.get('task',''))} is completed in evidence, but CSV says {escape(t.get('status',''))}.</li>" for t in payload['stats'].get('status_conflicts',[]))
     if payload['stats'].get('unassigned_blockers'):
         risks += f"<li>Blockers without an assigned project: {payload['stats']['unassigned_blockers']}</li>"
     return f'''<!doctype html>

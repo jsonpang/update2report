@@ -41,7 +41,14 @@ def calculate_stats(updates, tasks, report_date, team_members):
     for project, items in completions.items():
         projects[project]['completed'] = len(items)
     overdue = []
+    status_conflicts = []
     for task in tasks:
+        project = task.get('project') or 'Unassigned'
+        status = (task.get('status') or '').strip().lower()
+        if task_key(task.get('task',''),project) in completions.get(project,{}):
+            if status not in DONE_STATES:
+                status_conflicts.append(task)
+            continue
         due = (task.get('due') or '').strip()
         try:
             due_date = date.fromisoformat(due[:10])
@@ -50,7 +57,7 @@ def calculate_stats(updates, tasks, report_date, team_members):
         status = (task.get('status') or '').strip().lower()
         if due_date < report_date and status not in DONE_STATES:
             overdue.append({**task, 'due': due_date.isoformat()})
-    return {'projects': dict(projects), 'completion_items': {p:list(items.values()) for p,items in completions.items()}, 'overdue': overdue, 'no_updates': sorted(set(team_members) - updated_people), 'unassigned_blockers': unassigned_blockers}
+    return {'projects': dict(projects), 'completion_items': {p:list(items.values()) for p,items in completions.items()}, 'status_conflicts': status_conflicts, 'overdue': overdue, 'no_updates': sorted(set(team_members) - updated_people), 'unassigned_blockers': unassigned_blockers}
 
 def csv_task_rows(file_path):
     import csv

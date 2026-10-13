@@ -82,3 +82,11 @@ def test_composer_retries_numbers_even_if_another_project_has_that_count():
     client = FakeClient(['Atlas completed two tasks.','Atlas finished its landing page.'])
     assert compose_summary(client,[],stats,'internal') == 'Atlas finished its landing page.'
     assert len(client.prompts) == 2
+
+def test_text_completion_prevents_stale_csv_overdue_but_preserves_conflict():
+    update = UpdateBundle(person='Mira',project='Atlas',done=['QA checklist'],confidence=1)
+    row = {'project':'Atlas','task':'QA checklist','status':'in progress','due':'2026-10-12'}
+    stats = calculate_stats([update],[row],date(2026,10,13),['Mira'])
+    assert stats['projects']['Atlas']['completed'] == 1
+    assert stats['overdue'] == []
+    assert stats['status_conflicts'] == [row]

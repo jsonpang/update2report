@@ -23,6 +23,8 @@ def render_excel(payload, path):
     for task in payload['stats']['overdue']:
         risks.append(['Overdue',task.get('task',''),task.get('owner',''),task.get('project',''),task.get('due',''),task.get('status','')])
     for person in payload['stats']['no_updates']: risks.append(['No update',person,'','','',''])
+    for task in payload['stats'].get('status_conflicts',[]):
+        risks.append(['CSV status needs reconciliation',task.get('task',''),task.get('owner',''),task.get('project',''),task.get('due',''),task.get('status','')])
     if payload['stats'].get('unassigned_blockers'): risks.append(['Unassigned blockers','','','','',payload['stats']['unassigned_blockers']])
     for sheet in book.worksheets:
         sheet.freeze_panes = 'A2'

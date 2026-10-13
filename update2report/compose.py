@@ -42,6 +42,7 @@ def compose_summary(client, updates, stats, tone):
             "including CSV-only items. Keep pending work and blockers separate from completions. "
             "Use a separate sentence for each project. Never move a blocker to another project. "
             "Preserve blocker causes; do not reinterpret extraction confidence as deadline certainty. "
+            "status_conflicts indicate stale CSV statuses to reconcile, not unfinished or overdue tasks. "
             "Never say a whole project is finished. Avoid unsupported judgments such as on track. "
             "Do not use digits or number words, even for counts found in statistics.")
     last_error = None
