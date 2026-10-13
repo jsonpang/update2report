@@ -1,0 +1,56 @@
+{
+  "updates": [
+    {
+      "person": "Mira",
+      "project": "Atlas",
+      "done": [
+        "pushed checkout fixes"
+      ],
+      "next": [
+        "run regression"
+      ],
+      "blockers": [],
+      "due_dates": [],
+      "confidence": 0.95
+    },
+    {
+      "person": "Jon",
+      "project": "Beacon",
+      "done": [
+        "email wording is approved"
+      ],
+      "next": [
+        "retry tomorrow"
+      ],
+      "blockers": [
+        "provider sandbox is flaky"
+      ],
+      "due_dates": [],
+      "confidence": 0.9
+    },
+    {
+      "person": "Kai",
+      "project": "Cedar",
+      "done": [
+        "finished export button"
+      ],
+      "next": [],
+      "blockers": [],
+      "due_dates": [],
+      "confidence": 0.95
+    },
+    {
+      "person": "Lee",
+      "project": "Unassigned",
+      "done": [],
+      "next": [],
+      "blockers": [],
+      "due_dates": [],
+      "confidence": 0.6
+    }
+  ],
+  "summaries": {
+    "internal": "This week, Mira pushed checkout fixes for Atlas and will run regression next. Jon's Beacon update is blocked by a flaky provider sandbox, though the email wording is approved with a retry planned. Kai finished the Cedar export button with no blockers, while Lee has no updates to report.",
+    "client-facing": "Here's the weekly progress summary. On Atlas, Mira delivered checkout fixes and is moving on to regression testing, with no blockers in the way. On Beacon, Jon's email wording is approved, though the provider sandbox remains flaky, so a retry is planned. On Cedar, Kai completed the export button and has no open items. Lee has no updates to report this week."
+  }
+}

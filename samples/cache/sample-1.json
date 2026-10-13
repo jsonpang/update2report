@@ -1,0 +1,56 @@
+{
+  "updates": [
+    {
+      "person": "Mira",
+      "project": "Atlas",
+      "done": [
+        "landing page shipped yesterday",
+        "QA checklist finished"
+      ],
+      "next": [
+        "polish mobile layout by Friday"
+      ],
+      "blockers": [
+        "waiting on copy approval"
+      ],
+      "due_dates": [
+        "Friday"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "person": "Jon",
+      "project": "Beacon",
+      "done": [
+        "onboarding flow mostly done"
+      ],
+      "next": [
+        "fix login edge case"
+      ],
+      "blockers": [
+        "login edge case still failing"
+      ],
+      "due_dates": [],
+      "confidence": 1.0
+    },
+    {
+      "person": "Kai",
+      "project": "Cedar",
+      "done": [
+        "dashboard first draft is ready"
+      ],
+      "next": [
+        "check responsive layout"
+      ],
+      "blockers": [
+        "charts look weird on small screens"
+      ],
+      "due_dates": [],
+      "confidence": 1.0
+    }
+  ],
+  "summaries": {
+    "internal": "Mira closed out the Atlas landing page and QA checklist, with mobile polish pending copy approval. Jon reports the Beacon onboarding flow largely complete, though a login edge case remains unresolved. Kai has a first Cedar dashboard draft ready and is working through responsive chart issues on small screens.",
+    "client-facing": "Here is your weekly client update. Mira has shipped the Atlas landing page and completed the QA checklist, with mobile layout polish underway and copy approval still pending. Jon has the Beacon onboarding flow largely complete, though a login edge case continues to fail and needs resolution. Kai has produced the first Cedar dashboard draft, and the team is now refining its responsive layout, as the charts currently display inconsistently on smaller screens."
+  }
+}

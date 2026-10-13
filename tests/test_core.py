@@ -1,4 +1,4 @@
-﻿from datetime import date
+from datetime import date
 
 import pytest
 
@@ -22,6 +22,14 @@ def test_extract_retries_invalid_json_and_feeds_error_back():
     assert len(client.prompts) == 2
     assert 'not json' in client.prompts[1][1]
 
+def test_extract_normalizes_scalar_null_fields_and_missing_identity():
+    client = FakeClient(['[{"person":null,"project":null,"done":"Ship","next":null,"blockers":null,"due_dates":null,"confidence":0.8}]'])
+    result = extract_updates(client, 'Someone shipped something')
+    assert result[0].done == ['Ship']
+    assert result[0].next == []
+    assert result[0].person == 'Unknown'
+    assert result[0].project == 'Unassigned'
+
 def test_stats_counts_completion_overdue_blockers_and_no_update():
     updates = [UpdateBundle.model_validate({'person':'Ari','project':'Atlas','done':['Ship'],'next':[],'blockers':['API'],'due_dates':[],'confidence':0.8})]
     rows = [{'task':'Write spec','owner':'Bea','project':'Atlas','due':'2026-10-10','status':'in progress'}, {'task':'Ship','owner':'Ari','project':'Atlas','due':'2026-10-12','status':'done'}]
@@ -34,5 +42,6 @@ def test_stats_counts_completion_overdue_blockers_and_no_update():
 def test_summary_rejects_numbers_not_in_stats():
     stats = {'projects': {'Atlas': {'completed': 2, 'blockers': 1}}, 'overdue': [{'task':'x'}], 'no_updates': []}
     validate_summary_numbers('Atlas completed 2 tasks and has 1 blocker.', stats)
-    with pytest.raises(ValueError):
-        validate_summary_numbers('Atlas completed 3 tasks.', stats)
+    with pytest.raises(ValueError): validate_summary_numbers('Atlas completed 3 tasks.', stats)
+    with pytest.raises(ValueError): validate_summary_numbers('Atlas completed three tasks.', stats)
+    with pytest.raises(ValueError): validate_summary_numbers('Atlas had multiple completions.', stats)
