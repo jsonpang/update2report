@@ -49,3 +49,23 @@ def test_summary_rejects_numbers_not_in_stats():
     with pytest.raises(ValueError): validate_summary_numbers('Atlas completed 3 tasks.', stats)
     with pytest.raises(ValueError): validate_summary_numbers('Atlas completed three tasks.', stats)
     with pytest.raises(ValueError): validate_summary_numbers('Atlas had multiple completions.', stats)
+
+def test_text_only_completions_and_repeated_mentions_are_counted_once():
+    updates = [UpdateBundle(person=person, project='Atlas',
+                            done=['Landing page', 'QA checklist'], confidence=0.9)
+               for person in ['Mira', 'Lee']]
+    rows = [{'project':'Atlas','task':'Atlas QA checklist','status':'in progress'},
+            {'project':'Atlas','task':' landing PAGE! ','status':'完成'},
+            {'project':'Atlas','task':'Export button','status':'done'},
+            {'project':'Atlas','task':'Export button','status':'completed'}]
+    stats = calculate_stats(updates, rows, date(2026,10,13), ['Mira','Lee'])
+    assert stats['projects']['Atlas']['completed'] == 3
+    assert len(stats['completion_items']['Atlas']) == 3
+    text_only = calculate_stats(updates, [], date(2026,10,13), ['Mira','Lee'])
+    assert text_only['projects']['Atlas']['completed'] == 2
+
+def test_completion_identity_keeps_projects_separate():
+    updates = [UpdateBundle(person='A',project=p,done=['Ship'],confidence=1)
+               for p in ['Atlas','Beacon']]
+    stats = calculate_stats(updates, [], date(2026,10,13), ['A'])
+    assert [v['completed'] for v in stats['projects'].values()] == [1,1]

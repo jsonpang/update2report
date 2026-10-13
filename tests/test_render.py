@@ -21,7 +21,7 @@ def test_cached_sample_generates_offline_without_llm(monkeypatch, tmp_path):
     (sample_dir / 'cache').mkdir(parents=True)
     (sample_dir / 'offline.json').write_text(json.dumps({'text':'cached notes','csv':'tasks.csv'}), encoding='utf-8')
     (sample_dir / 'cache' / 'offline.json').write_text(json.dumps({
-        'updates': [{'person':'Ari','project':'Atlas','done':['Shipped'],'next':[],'blockers':[],'due_dates':[],'confidence':0.9}],
+        'updates': [{'person':'Ari','project':'Atlas','done':['Ship'],'next':[],'blockers':[],'due_dates':[],'confidence':0.9}],
         'summaries': {'internal':'Atlas work moved forward.'}
     }), encoding='utf-8')
     csv_file = tmp_path / 'tasks.csv'

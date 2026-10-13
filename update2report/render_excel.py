@@ -1,5 +1,6 @@
 from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill
+from .stats import COMPLETION_RULE
 
 def render_excel(payload, path):
     book = Workbook()
@@ -9,6 +10,10 @@ def render_excel(payload, path):
     summary.append(['Project', 'Completed', 'Blockers'])
     for name, values in payload['stats']['projects'].items(): summary.append([name, values['completed'], values['blockers']])
     summary.append(['Summary', payload['summary']])
+    summary.append(['Completion rule', COMPLETION_RULE])
+    for project, items in payload['stats'].get('completion_items', {}).items():
+        for item in items:
+            summary.append(['Counted completion', project, item['task'], ', '.join(item['sources'])])
     details = book.create_sheet('Details')
     details.append(['Person','Project','Done','Next','Blockers','Due dates','Confidence'])
     for item in payload['updates']:
