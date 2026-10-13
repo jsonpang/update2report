@@ -1,4 +1,4 @@
-﻿from openpyxl import Workbook
+from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill
 
 def render_excel(payload, path):
@@ -18,6 +18,7 @@ def render_excel(payload, path):
     for task in payload['stats']['overdue']:
         risks.append(['Overdue',task.get('task',''),task.get('owner',''),task.get('project',''),task.get('due',''),task.get('status','')])
     for person in payload['stats']['no_updates']: risks.append(['No update',person,'','','',''])
+    if payload['stats'].get('unassigned_blockers'): risks.append(['Unassigned blockers','','','','',payload['stats']['unassigned_blockers']])
     for sheet in book.worksheets:
         sheet.freeze_panes = 'A2'
         for cell in sheet[1]: cell.font = Font(bold=True, color='FFFFFF'); cell.fill = PatternFill('solid', fgColor='263D78')

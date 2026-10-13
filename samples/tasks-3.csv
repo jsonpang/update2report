@@ -1,5 +1,8 @@
-﻿task,owner,project,due,status
+task,owner,project,due,status
 Atlas QA,Mira,Atlas,2026-10-16,planned
 Beacon credentials,Jon,Beacon,2026-10-12,blocked
 Cedar mobile spacing,Kai,Cedar,2026-10-18,in progress
 Cedar chart labels,Kai,Cedar,2026-10-10,done
+Capacity planning,Nia,Atlas,2026-10-20,planned
+Documentation review,Omar,Cedar,2026-10-21,planned
+Release notes review,Lee,Beacon,2026-10-22,planned

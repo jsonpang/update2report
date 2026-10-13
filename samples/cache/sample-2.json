@@ -4,7 +4,7 @@
       "person": "Mira",
       "project": "Atlas",
       "done": [
-        "pushed checkout fixes"
+        "pushed Atlas checkout fixes"
       ],
       "next": [
         "run regression"
@@ -32,7 +32,7 @@
       "person": "Kai",
       "project": "Cedar",
       "done": [
-        "finished export button"
+        "finished Cedar export button"
       ],
       "next": [],
       "blockers": [],
@@ -42,15 +42,17 @@
     {
       "person": "Lee",
       "project": "Unassigned",
-      "done": [],
+      "done": [
+        "no update"
+      ],
       "next": [],
       "blockers": [],
       "due_dates": [],
-      "confidence": 0.6
+      "confidence": 0.9
     }
   ],
   "summaries": {
-    "internal": "This week, Mira pushed checkout fixes for Atlas and will run regression next. Jon's Beacon update is blocked by a flaky provider sandbox, though the email wording is approved with a retry planned. Kai finished the Cedar export button with no blockers, while Lee has no updates to report.",
-    "client-facing": "Here's the weekly progress summary. On Atlas, Mira delivered checkout fixes and is moving on to regression testing, with no blockers in the way. On Beacon, Jon's email wording is approved, though the provider sandbox remains flaky, so a retry is planned. On Cedar, Kai completed the export button and has no open items. Lee has no updates to report this week."
+    "internal": "This week, Atlas pushed checkout fixes and is set to run regression next. Beacon has the email wording approved but remains blocked by a flaky provider sandbox, with a retry planned. Cedar finished the export button, while other tracked items had no update.",
+    "client-facing": "This week, Mira pushed checkout fixes for Atlas and is moving on to regression testing, while Kai finished the export button for Cedar. Jon's work on Beacon is temporarily held up by an unstable provider sandbox, though the email wording has been approved and a retry is planned. Lee had no update this week, and we are still waiting on updates from Nia and Omar."
   }
 }

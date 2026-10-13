@@ -38,6 +38,10 @@ def test_stats_counts_completion_overdue_blockers_and_no_update():
     assert stats['projects']['Atlas']['blockers'] == 1
     assert [item['task'] for item in stats['overdue']] == ['Write spec']
     assert stats['no_updates'] == ['Bea']
+    unknown = UpdateBundle.model_validate({'person':'Cai','project':'Unassigned','done':[],'next':[],'blockers':['Need owner'],'due_dates':[],'confidence':0.5})
+    stats = calculate_stats([*updates, unknown], rows, date(2026, 10, 13), ['Ari','Bea','Cai'])
+    assert 'Unassigned' not in stats['projects']
+    assert stats['unassigned_blockers'] == 1
 
 def test_summary_rejects_numbers_not_in_stats():
     stats = {'projects': {'Atlas': {'completed': 2, 'blockers': 1}}, 'overdue': [{'task':'x'}], 'no_updates': []}

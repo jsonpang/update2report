@@ -5,7 +5,7 @@
       "project": "Atlas",
       "done": [
         "landing page shipped yesterday",
-        "QA checklist finished"
+        "QA checklist is finished"
       ],
       "next": [
         "polish mobile layout by Friday"
@@ -16,7 +16,7 @@
       "due_dates": [
         "Friday"
       ],
-      "confidence": 1.0
+      "confidence": 0.95
     },
     {
       "person": "Jon",
@@ -31,7 +31,7 @@
         "login edge case still failing"
       ],
       "due_dates": [],
-      "confidence": 1.0
+      "confidence": 0.9
     },
     {
       "person": "Kai",
@@ -46,11 +46,11 @@
         "charts look weird on small screens"
       ],
       "due_dates": [],
-      "confidence": 1.0
+      "confidence": 0.9
     }
   ],
   "summaries": {
-    "internal": "Mira closed out the Atlas landing page and QA checklist, with mobile polish pending copy approval. Jon reports the Beacon onboarding flow largely complete, though a login edge case remains unresolved. Kai has a first Cedar dashboard draft ready and is working through responsive chart issues on small screens.",
-    "client-facing": "Here is your weekly client update. Mira has shipped the Atlas landing page and completed the QA checklist, with mobile layout polish underway and copy approval still pending. Jon has the Beacon onboarding flow largely complete, though a login edge case continues to fail and needs resolution. Kai has produced the first Cedar dashboard draft, and the team is now refining its responsive layout, as the charts currently display inconsistently on smaller screens."
+    "internal": "This week Atlas shipped its landing page and closed out the QA checklist, with mobile polish queued next and copy approval still pending. Beacon has the onboarding flow largely complete but remains stuck on a failing login edge case, which also leaves related work overdue. Cedar's dashboard first draft is ready, though charts need attention on small screens. No updates came in from Lee, Nia, or Omar.",
+    "client-facing": "This week, Atlas completed its landing page and QA checklist, with mobile layout polish planned and copy approval still pending. Beacon has nearly finished its onboarding flow but is working through a login edge case. Cedar has a first dashboard draft ready, though charts need adjustment on smaller screens."
   }
 }

@@ -7,7 +7,7 @@
         "closed responsive bug"
       ],
       "next": [
-        "QA"
+        "QA by Oct 16"
       ],
       "blockers": [],
       "due_dates": [
@@ -23,7 +23,7 @@
       ],
       "next": [],
       "blockers": [
-        "test credentials"
+        "blocked by test credentials"
       ],
       "due_dates": [],
       "confidence": 0.9
@@ -44,9 +44,7 @@
     {
       "person": "Lee",
       "project": "Unassigned",
-      "done": [
-        "no news"
-      ],
+      "done": [],
       "next": [],
       "blockers": [],
       "due_dates": [],
@@ -54,7 +52,7 @@
     }
   ],
   "summaries": {
-    "internal": "Mira closed the responsive bug on Atlas and is moving into QA. Jon fixed the login issue on Beacon but is blocked on test credentials, which remain outstanding. Kai finished chart labels for Cedar and will tune mobile spacing next. No update from Lee.",
-    "client-facing": "Here’s the weekly status summary for client review. Atlas is focused on a responsive bug fix and is moving into QA with good confidence. Cedar completed chart labels and will tune mobile spacing next. Beacon is progressing on the login issue, but work is temporarily blocked pending test credentials, which are now overdue."
+    "internal": "Mira closed a responsive bug on Atlas and is moving to QA. Jon fixed a login issue on Beacon but remains blocked on test credentials. Kai finished chart labels for Cedar and will tune mobile spacing next.",
+    "client-facing": "This week, Mira closed a responsive bug on Atlas and that work is headed into QA, while Kai completed chart labeling on Cedar and will next tune mobile spacing. Jon resolved the login issue on Beacon, but further progress there is blocked by test credentials. No updates were received from Nia or Omar."
   }
 }
