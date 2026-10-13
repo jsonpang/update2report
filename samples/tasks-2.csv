@@ -1,0 +1,5 @@
+﻿task,owner,project,due,status
+Atlas regression run,Mira,Atlas,2026-10-17,planned
+Beacon sandbox retry,Jon,Beacon,2026-10-12,blocked
+Cedar export validation,Kai,Cedar,2026-10-16,in progress
+Team update,Lee,Northwind,2026-10-13,planned

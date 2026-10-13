@@ -1,0 +1,4 @@
+﻿{
+    "text":  "Mira: Atlas landing page shipped вчера, nice. Still waiting on copy approval; I\u0027ll polish mobile layout by Friday.\nJon: Beacon onboarding flow mostly done, login edge case still failing; fix it next.\nKai: Cedar dashboard first draft is ready, charts look weird on small screens; check responsive layout.\nMira: also the Atlas QA checklist is finished.",
+    "csv":  "tasks-1.csv"
+}
