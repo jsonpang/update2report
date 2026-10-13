@@ -2,6 +2,19 @@ from pathlib import Path
 
 from update2report.render_html import render_html
 from update2report.render_excel import render_excel
+from update2report.schemas import UpdateBundle
+
+def test_html_utf8_preserves_chinese_and_uses_safe_separators(tmp_path):
+    payload = {'date':'2026-10-13','tone':'internal','summary':'页面完成，无乱码。',
+               'updates':[UpdateBundle(person='米拉',project='Atlas',done=['页面'],confidence=1)],
+               'stats':{'projects':{},'overdue':[],'no_updates':[]}}
+    target = tmp_path / 'report.html'
+    target.write_text(render_html(payload), encoding='utf-8')
+    content = target.read_bytes().decode('utf-8')
+    assert '<meta charset="utf-8">' in content
+    assert '页面完成' in content and '米拉' in content
+    assert '\ufffd' not in content
+    assert '&middot;' in content and '&mdash;' in content
 
 def test_html_is_single_file_and_excel_has_three_sheets(tmp_path):
     payload = {'date':'2026-10-13','tone':'internal','summary':'One item done.','updates':[],'stats':{'projects':{},'overdue':[],'no_updates':[]}}
