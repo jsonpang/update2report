@@ -69,3 +69,10 @@ def test_completion_identity_keeps_projects_separate():
                for p in ['Atlas','Beacon']]
     stats = calculate_stats(updates, [], date(2026,10,13), ['A'])
     assert [v['completed'] for v in stats['projects'].values()] == [1,1]
+
+def test_composer_retries_numbers_even_if_another_project_has_that_count():
+    from update2report.compose import compose_summary
+    stats = {'projects':{'Atlas':{'completed':1,'blockers':0},'Cedar':{'completed':2,'blockers':0}}}
+    client = FakeClient(['Atlas completed two tasks.','Atlas finished its landing page.'])
+    assert compose_summary(client,[],stats,'internal') == 'Atlas finished its landing page.'
+    assert len(client.prompts) == 2

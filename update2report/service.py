@@ -76,7 +76,7 @@ def generate_report(text, csv_path=None, tone='internal', sample_id=None, client
     stats = calculate_stats(updates, tasks, report_date, members)
     if cached:
         summary = cached['summaries'][tone]
-        validate_summary_numbers(summary, stats)
+        validate_summary_numbers(summary, stats, numeric_free=True)
     else:
         summary = compose_summary(client, updates, stats, tone)
     payload = {'date':report_date.isoformat(), 'tone':tone, 'summary':summary, 'updates':updates, 'stats':stats}
