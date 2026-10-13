@@ -1,8 +1,11 @@
 task,owner,project,due,status
-Atlas QA,Mira,Atlas,2026-10-16,planned
-Beacon credentials,Jon,Beacon,2026-10-12,blocked
-Cedar mobile spacing,Kai,Cedar,2026-10-18,in progress
-Cedar chart labels,Kai,Cedar,2026-10-10,done
-Capacity planning,Nia,Atlas,2026-10-20,planned
-Documentation review,Omar,Cedar,2026-10-21,planned
-Release notes review,Lee,Beacon,2026-10-22,planned
+deployment notes,Mira,Atlas,2026-10-12,in progress
+release checklist,Lee,Atlas,2026-10-13,completed
+production release,Lee,Atlas,2026-10-16,blocked
+smoke tests,Jon,Beacon,2026-10-13,done
+support FAQ,Omar,Beacon,2026-10-14,in progress
+performance tuning,Jon,Beacon,2026-10-12,in progress
+billing export,Kai,Cedar,2026-10-12,in progress
+chart labels,Nia,Cedar,2026-10-14,done
+archived migration,Kai,Cedar,2026-10-09,closed
+currency mapping,Kai,Cedar,2026-10-15,planned

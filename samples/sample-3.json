@@ -1,4 +1,9 @@
-﻿{
-    "text":  "Weekly notes!! Atlas: Mira closed responsive bug, next QA by Oct 16. Beacon: Jon fixed login issue; still blocked by test credentials. Cedar: Kai did chart labels, will tune mobile spacing. Lee: no news. Task from yesterday might be late??",
-    "csv":  "tasks-3.csv"
+{
+  "text": "[Fictional Northwind Studio chat, report date 2026-10-13]\nMira [Atlas]: deployment notes done；deployment 只是计划 by Fri，still waiting on client to approve the maintenance window。\nJon [Beacon]: smoke tests done，登录和退出都跑过了。performance tuning 没完成，还在看。\nKai [Cedar]: billing export finished，导出的文件已核对。currency mapping 的标千有错别字，明天处理。\nNia [Cedar]: chart labels 已修正完成；billing export 也已完成，这是 Kai 提的同一项。\nOmar [Beacon]: support FAQ 完成啦，中英文说明都齐了。still waiting on client for sign-off，未签字先别宣布整个项目完成。\nLee [Atlas]: release checklist done; production release 还没做，等 maintenance window。\nKai [Cedar]: billing export done 再补录一次，别和 archived migration 混在一起。archived migration 的完成记录只在任务表里。\nLee [Atlas]: 再确认 release checklist 已完成，但上线仍 blocked。",
+  "csv": "tasks-3.csv",
+  "expected_completed": {
+    "Atlas": 2,
+    "Beacon": 2,
+    "Cedar": 3
+  }
 }

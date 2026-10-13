@@ -33,7 +33,7 @@ The app reads only LLM_BASE_URL, LLM_API_KEY and LLM_MODEL for its OpenAI-compat
 
 ## Trusted statistics
 
-Completed = extracted done items + CSV tasks in done/complete/completed/closed or Chinese completion states. Deduplicate within each project using Unicode NFKC, case folding, ignoring whitespace/punctuation and an optional project prefix. Owners do not affect identity. Extraction uses exact CSV task names where applicable and canonical names for repeated multilingual mentions. Different unmatched paraphrases remain separate; there is no fuzzy merge. HTML and Excel show every counted task and its text/CSV sources. Chat can record completion while CSV still says in progress. Overdue remains a CSV-status-based signal; relative dates in notes remain verbatim.
+Completed = extracted done items + CSV tasks in done/complete/completed/closed or Chinese completion states. Deduplicate within each project using Unicode NFKC, case folding, ignoring whitespace/punctuation and an optional project prefix. Owners do not affect identity. Extraction uses exact CSV task names where applicable and canonical names for repeated multilingual mentions. Different unmatched paraphrases remain separate; there is no fuzzy merge. HTML and Excel show every counted task and its text/CSV sources. Chat can record completion while CSV still says in progress. Text-completed tasks are excluded from overdue; stale CSV statuses are listed separately for reconciliation. Relative dates in notes remain verbatim.
 
 Upload optional UTF-8 CSV with task,owner,project,due,status columns and ISO YYYY-MM-DD due dates. Counts are computed in Python. The numeric-free model summary is checked for unsupported numbers; this does not independently prove semantic extraction accuracy.
 

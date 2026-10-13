@@ -1,17 +1,21 @@
 {
+  "version": 2,
+  "fingerprint": "f78bbc267626cce9198a9e82cfd59139348752c9db00ea726412b589a877f0ca",
   "updates": [
     {
       "person": "Mira",
       "project": "Atlas",
       "done": [
-        "closed responsive bug"
+        "deployment notes"
       ],
       "next": [
-        "QA by Oct 16"
+        "deployment"
       ],
-      "blockers": [],
+      "blockers": [
+        "waiting on client to approve the maintenance window"
+      ],
       "due_dates": [
-        "Oct 16"
+        "Fri"
       ],
       "confidence": 0.9
     },
@@ -19,11 +23,62 @@
       "person": "Jon",
       "project": "Beacon",
       "done": [
-        "fixed login issue"
+        "smoke tests"
+      ],
+      "next": [],
+      "blockers": [],
+      "due_dates": [],
+      "confidence": 0.9
+    },
+    {
+      "person": "Kai",
+      "project": "Cedar",
+      "done": [
+        "billing export"
+      ],
+      "next": [
+        "currency mapping"
+      ],
+      "blockers": [],
+      "due_dates": [
+        "明天"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "person": "Nia",
+      "project": "Cedar",
+      "done": [
+        "chart labels",
+        "billing export"
+      ],
+      "next": [],
+      "blockers": [],
+      "due_dates": [],
+      "confidence": 0.9
+    },
+    {
+      "person": "Omar",
+      "project": "Beacon",
+      "done": [
+        "support FAQ"
       ],
       "next": [],
       "blockers": [
-        "blocked by test credentials"
+        "waiting on client for sign-off"
+      ],
+      "due_dates": [],
+      "confidence": 0.9
+    },
+    {
+      "person": "Lee",
+      "project": "Atlas",
+      "done": [
+        "release checklist"
+      ],
+      "next": [],
+      "blockers": [
+        "waiting on maintenance window"
       ],
       "due_dates": [],
       "confidence": 0.9
@@ -32,19 +87,19 @@
       "person": "Kai",
       "project": "Cedar",
       "done": [
-        "chart labels"
+        "billing export"
       ],
-      "next": [
-        "tune mobile spacing"
-      ],
+      "next": [],
       "blockers": [],
       "due_dates": [],
       "confidence": 0.9
     },
     {
       "person": "Lee",
-      "project": "Unassigned",
-      "done": [],
+      "project": "Atlas",
+      "done": [
+        "release checklist"
+      ],
       "next": [],
       "blockers": [],
       "due_dates": [],
@@ -52,7 +107,9 @@
     }
   ],
   "summaries": {
-    "internal": "Mira closed a responsive bug on Atlas and is moving to QA. Jon fixed a login issue on Beacon but remains blocked on test credentials. Kai finished chart labels for Cedar and will tune mobile spacing next.",
-    "client-facing": "This week, Mira closed a responsive bug on Atlas and that work is headed into QA, while Kai completed chart labeling on Cedar and will next tune mobile spacing. Jon resolved the login issue on Beacon, but further progress there is blocked by test credentials. No updates were received from Nia or Omar."
-  }
+    "internal": "For Atlas, the release checklist and deployment notes are complete, while the maintenance window approval from the client is still pending. For Beacon, the smoke tests and support FAQ are complete, with the FAQ awaiting client sign-off. For Cedar, the chart labels, archived migration, and billing export are complete, while currency mapping is pending.",
+    "client-facing": "For Atlas, the release checklist and deployment notes are complete, while deployment remains pending and both Lee and Mira cite the maintenance window awaiting client approval as a blocker. For Beacon, the smoke tests and support FAQ are complete, with the support FAQ awaiting client sign-off and performance tuning still in progress. For Cedar, chart labels, the archived migration, and the billing export are complete, and currency mapping is the remaining pending work with no blockers."
+  },
+  "report_date": "2026-10-13",
+  "model": "workbuddy-deepseek-v4.1-flash"
 }

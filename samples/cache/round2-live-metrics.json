@@ -1,0 +1,388 @@
+[
+  {
+    "sample": "sample-1",
+    "model": "workbuddy-deepseek-v4.1-flash",
+    "report_date": "2026-10-13",
+    "stats": {
+      "projects": {
+        "Atlas": {
+          "completed": 3,
+          "blockers": 1
+        },
+        "Beacon": {
+          "completed": 2,
+          "blockers": 2
+        },
+        "Cedar": {
+          "completed": 3,
+          "blockers": 0
+        }
+      },
+      "completion_items": {
+        "Atlas": [
+          {
+            "task": "capacity review",
+            "sources": [
+              "CSV",
+              "Text: Nia"
+            ]
+          },
+          {
+            "task": "landing page",
+            "sources": [
+              "Text: Mira"
+            ]
+          },
+          {
+            "task": "QA checklist",
+            "sources": [
+              "Text: Mira",
+              "Text: Lee"
+            ]
+          }
+        ],
+        "Beacon": [
+          {
+            "task": "release notes review",
+            "sources": [
+              "CSV",
+              "Text: Lee"
+            ]
+          },
+          {
+            "task": "email copy",
+            "sources": [
+              "Text: Omar"
+            ]
+          }
+        ],
+        "Cedar": [
+          {
+            "task": "dashboard draft",
+            "sources": [
+              "CSV",
+              "Text: Kai"
+            ]
+          },
+          {
+            "task": "export button",
+            "sources": [
+              "CSV",
+              "Text: Kai"
+            ]
+          },
+          {
+            "task": "documentation review",
+            "sources": [
+              "Text: Omar"
+            ]
+          }
+        ]
+      },
+      "status_conflicts": [
+        {
+          "task": "landing page",
+          "owner": "Mira",
+          "project": "Atlas",
+          "due": "2026-10-12",
+          "status": "in progress"
+        },
+        {
+          "task": "QA checklist",
+          "owner": "Mira",
+          "project": "Atlas",
+          "due": "2026-10-15",
+          "status": "in progress"
+        },
+        {
+          "task": "email copy",
+          "owner": "Omar",
+          "project": "Beacon",
+          "due": "2026-10-09",
+          "status": "blocked"
+        },
+        {
+          "task": "documentation review",
+          "owner": "Omar",
+          "project": "Cedar",
+          "due": "2026-10-14",
+          "status": "in progress"
+        }
+      ],
+      "overdue": [
+        {
+          "task": "onboarding flow",
+          "owner": "Jon",
+          "project": "Beacon",
+          "due": "2026-10-11",
+          "status": "in progress"
+        }
+      ],
+      "no_updates": [],
+      "unassigned_blockers": 0
+    },
+    "actual_completed": {
+      "Atlas": 3,
+      "Beacon": 2,
+      "Cedar": 3
+    },
+    "expected_completed": {
+      "Atlas": 3,
+      "Beacon": 2,
+      "Cedar": 3
+    },
+    "status": "ok",
+    "summaries": {
+      "internal": "Atlas completed the capacity review, landing page, and QA checklist; the next pending item is mobile polish, and the remaining blocker is waiting on client copy approval. Beacon completed the release notes review and email copy; pending work includes the onboarding flow, which is blocked by a failing login edge case. Cedar completed the dashboard draft, export button, and documentation review, with no current blockers noted.",
+      "client-facing": "For Atlas, work completed includes the capacity review, the landing page, and the QA checklist; mobile polish is still pending, with copy approval from the client awaited. For Beacon, the release notes review and email copy are complete, while the onboarding flow remains pending and is blocked by an unresolved login edge case, which also holds up related work. For Cedar, the dashboard draft, the export button, and the documentation review are complete, with no outstanding blockers noted."
+    },
+    "elapsed_seconds": 11.71,
+    "total_tokens": 5310
+  },
+  {
+    "sample": "sample-2",
+    "model": "workbuddy-deepseek-v4.1-flash",
+    "report_date": "2026-10-13",
+    "stats": {
+      "projects": {
+        "Atlas": {
+          "completed": 2,
+          "blockers": 2
+        },
+        "Beacon": {
+          "completed": 2,
+          "blockers": 1
+        },
+        "Cedar": {
+          "completed": 2,
+          "blockers": 0
+        }
+      },
+      "completion_items": {
+        "Atlas": [
+          {
+            "task": "prototype",
+            "sources": [
+              "CSV",
+              "Text: Mira"
+            ]
+          },
+          {
+            "task": "accessibility pass",
+            "sources": [
+              "Text: Lee"
+            ]
+          }
+        ],
+        "Beacon": [
+          {
+            "task": "API guide",
+            "sources": [
+              "CSV",
+              "Text: Omar"
+            ]
+          },
+          {
+            "task": "webhook tests",
+            "sources": [
+              "Text: Jon",
+              "Text: Omar"
+            ]
+          }
+        ],
+        "Cedar": [
+          {
+            "task": "dashboard filters",
+            "sources": [
+              "CSV",
+              "Text: Kai"
+            ]
+          },
+          {
+            "task": "data dictionary",
+            "sources": [
+              "Text: Nia"
+            ]
+          }
+        ]
+      },
+      "status_conflicts": [
+        {
+          "task": "accessibility pass",
+          "owner": "Lee",
+          "project": "Atlas",
+          "due": "2026-10-13",
+          "status": "in progress"
+        },
+        {
+          "task": "webhook tests",
+          "owner": "Jon",
+          "project": "Beacon",
+          "due": "2026-10-12",
+          "status": "in progress"
+        },
+        {
+          "task": "data dictionary",
+          "owner": "Nia",
+          "project": "Cedar",
+          "due": "2026-10-14",
+          "status": "in progress"
+        }
+      ],
+      "overdue": [
+        {
+          "task": "retries",
+          "owner": "Jon",
+          "project": "Beacon",
+          "due": "2026-10-11",
+          "status": "blocked"
+        }
+      ],
+      "no_updates": [],
+      "unassigned_blockers": 0
+    },
+    "actual_completed": {
+      "Atlas": 2,
+      "Beacon": 2,
+      "Cedar": 2
+    },
+    "expected_completed": {
+      "Atlas": 2,
+      "Beacon": 2,
+      "Cedar": 2
+    },
+    "status": "ok",
+    "summaries": {
+      "internal": "For Atlas, the prototype and accessibility pass are complete; open items include the handoff, which remains stuck pending legal approval. For Beacon, the API guide and webhook tests are complete; retries remain pending, with progress blocked while awaiting client test credentials. For Cedar, dashboard filters and data dictionary are complete, with pagination still pending and no blockers noted.",
+      "client-facing": "Atlas completed the prototype and accessibility pass; pending work includes the handoff, while legal approval remains pending and the handoff is stuck. Beacon completed the API guide and webhook tests; upcoming work includes retries, with the client test credentials still awaited and the retries item blocked. Cedar completed the dashboard filters and data dictionary; pagination remains pending with no blockers noted."
+    },
+    "elapsed_seconds": 8.208,
+    "total_tokens": 3455
+  },
+  {
+    "sample": "sample-3",
+    "model": "workbuddy-deepseek-v4.1-flash",
+    "report_date": "2026-10-13",
+    "stats": {
+      "projects": {
+        "Atlas": {
+          "completed": 2,
+          "blockers": 2
+        },
+        "Beacon": {
+          "completed": 2,
+          "blockers": 1
+        },
+        "Cedar": {
+          "completed": 3,
+          "blockers": 0
+        }
+      },
+      "completion_items": {
+        "Atlas": [
+          {
+            "task": "release checklist",
+            "sources": [
+              "CSV",
+              "Text: Lee"
+            ]
+          },
+          {
+            "task": "deployment notes",
+            "sources": [
+              "Text: Mira"
+            ]
+          }
+        ],
+        "Beacon": [
+          {
+            "task": "smoke tests",
+            "sources": [
+              "CSV",
+              "Text: Jon"
+            ]
+          },
+          {
+            "task": "support FAQ",
+            "sources": [
+              "Text: Omar"
+            ]
+          }
+        ],
+        "Cedar": [
+          {
+            "task": "chart labels",
+            "sources": [
+              "CSV",
+              "Text: Nia"
+            ]
+          },
+          {
+            "task": "archived migration",
+            "sources": [
+              "CSV"
+            ]
+          },
+          {
+            "task": "billing export",
+            "sources": [
+              "Text: Kai",
+              "Text: Nia"
+            ]
+          }
+        ]
+      },
+      "status_conflicts": [
+        {
+          "task": "deployment notes",
+          "owner": "Mira",
+          "project": "Atlas",
+          "due": "2026-10-12",
+          "status": "in progress"
+        },
+        {
+          "task": "support FAQ",
+          "owner": "Omar",
+          "project": "Beacon",
+          "due": "2026-10-14",
+          "status": "in progress"
+        },
+        {
+          "task": "billing export",
+          "owner": "Kai",
+          "project": "Cedar",
+          "due": "2026-10-12",
+          "status": "in progress"
+        }
+      ],
+      "overdue": [
+        {
+          "task": "performance tuning",
+          "owner": "Jon",
+          "project": "Beacon",
+          "due": "2026-10-12",
+          "status": "in progress"
+        }
+      ],
+      "no_updates": [],
+      "unassigned_blockers": 0
+    },
+    "actual_completed": {
+      "Atlas": 2,
+      "Beacon": 2,
+      "Cedar": 3
+    },
+    "expected_completed": {
+      "Atlas": 2,
+      "Beacon": 2,
+      "Cedar": 3
+    },
+    "status": "ok",
+    "summaries": {
+      "internal": "For Atlas, the release checklist and deployment notes are complete, while the maintenance window approval from the client is still pending. For Beacon, the smoke tests and support FAQ are complete, with the FAQ awaiting client sign-off. For Cedar, the chart labels, archived migration, and billing export are complete, while currency mapping is pending.",
+      "client-facing": "For Atlas, the release checklist and deployment notes are complete, while deployment remains pending and both Lee and Mira cite the maintenance window awaiting client approval as a blocker. For Beacon, the smoke tests and support FAQ are complete, with the support FAQ awaiting client sign-off and performance tuning still in progress. For Cedar, chart labels, the archived migration, and the billing export are complete, and currency mapping is the remaining pending work with no blockers."
+    },
+    "elapsed_seconds": 8.22,
+    "total_tokens": 3755
+  }
+]

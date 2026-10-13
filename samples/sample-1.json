@@ -1,4 +1,9 @@
-﻿{
-    "text":  "Mira: Atlas landing page shipped вчера, nice. Still waiting on copy approval; I\u0027ll polish mobile layout by Friday.\nJon: Beacon onboarding flow mostly done, login edge case still failing; fix it next.\nKai: Cedar dashboard first draft is ready, charts look weird on small screens; check responsive layout.\nMira: also the Atlas QA checklist is finished.",
-    "csv":  "tasks-1.csv"
+{
+  "text": "[Fictional Northwind Studio chat, report date 2026-10-13]\nMira [Atlas]: landing page 已上线啦，QA checklist 也完成了（CSV还没来得及改）。mobile polish by Fri，排版有点错位，标千也打错了。\nJon [Beacon]: onboarding flow mostly done, BUT login edge case still failing；还不能说完成，明天修。\nKai [Cedar]: dashboard draft done; export button 已交付。图表手机上有点歪，responsive layout 下步弄。\nNia [Atlas]: capacity review done；still waiting on client for copy approval, 这块卡住了。\nOmar [Beacon]: email copy done，文案错别字修好啦。\nOmar [Cedar]: documentation review 已完成。\nLee [Beacon]: release notes review finished; onboarding flow 还在等 Jon 的登录修复。\nMira [Atlas]: 补一句 landing page / QA checklist 都是已经完成的，别重复算哈。\nLee [Atlas]: 我复核了，QA checklist 已完成，同 Mira 提的是同一份。",
+  "csv": "tasks-1.csv",
+  "expected_completed": {
+    "Atlas": 3,
+    "Beacon": 2,
+    "Cedar": 3
+  }
 }

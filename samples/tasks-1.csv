@@ -1,10 +1,11 @@
 task,owner,project,due,status
-Atlas QA checklist,Mira,Atlas,2026-10-15,in progress
-Beacon onboarding flow,Jon,Beacon,2026-10-11,in progress
-Cedar dashboard draft,Kai,Cedar,2026-10-14,done
-Atlas mobile polish,Mira,Atlas,2026-10-16,planned
-Beacon email copy,Jon,Beacon,2026-10-09,blocked
-Cedar export button,Kai,Cedar,2026-10-12,done
-Capacity planning,Nia,Atlas,2026-10-20,planned
-Documentation review,Omar,Cedar,2026-10-21,planned
-Release notes review,Lee,Beacon,2026-10-22,planned
+landing page,Mira,Atlas,2026-10-12,in progress
+QA checklist,Mira,Atlas,2026-10-15,in progress
+mobile polish,Mira,Atlas,2026-10-16,planned
+capacity review,Nia,Atlas,2026-10-12,done
+onboarding flow,Jon,Beacon,2026-10-11,in progress
+email copy,Omar,Beacon,2026-10-09,blocked
+release notes review,Lee,Beacon,2026-10-13,done
+dashboard draft,Kai,Cedar,2026-10-14,done
+export button,Kai,Cedar,2026-10-12,done
+documentation review,Omar,Cedar,2026-10-14,in progress

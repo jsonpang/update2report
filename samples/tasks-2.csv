@@ -1,7 +1,10 @@
 task,owner,project,due,status
-Atlas regression run,Mira,Atlas,2026-10-17,planned
-Beacon sandbox retry,Jon,Beacon,2026-10-12,blocked
-Cedar export validation,Kai,Cedar,2026-10-16,in progress
-Team update,Lee,Atlas,2026-10-13,planned
-Capacity planning,Nia,Atlas,2026-10-20,planned
-Documentation review,Omar,Cedar,2026-10-21,planned
+prototype,Mira,Atlas,2026-10-12,done
+accessibility pass,Lee,Atlas,2026-10-13,in progress
+handoff,Mira,Atlas,2026-10-16,blocked
+webhook tests,Jon,Beacon,2026-10-12,in progress
+API guide,Omar,Beacon,2026-10-14,done
+retries,Jon,Beacon,2026-10-11,blocked
+dashboard filters,Kai,Cedar,2026-10-13,done
+data dictionary,Nia,Cedar,2026-10-14,in progress
+pagination,Kai,Cedar,2026-10-15,planned

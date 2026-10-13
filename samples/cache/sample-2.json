@@ -1,29 +1,44 @@
 {
+  "version": 2,
+  "fingerprint": "e9ae10dfbfe90ebb826649bf84569604212621c95123263b2707b412fea76cd1",
   "updates": [
     {
       "person": "Mira",
       "project": "Atlas",
       "done": [
-        "pushed Atlas checkout fixes"
+        "prototype"
       ],
+      "next": [],
+      "blockers": [],
+      "due_dates": [
+        "by Fri"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "person": "Mira",
+      "project": "Atlas",
+      "done": [],
       "next": [
-        "run regression"
+        "handoff"
       ],
       "blockers": [],
-      "due_dates": [],
-      "confidence": 0.95
+      "due_dates": [
+        "by Fri"
+      ],
+      "confidence": 0.9
     },
     {
       "person": "Jon",
       "project": "Beacon",
       "done": [
-        "email wording is approved"
+        "webhook tests"
       ],
       "next": [
-        "retry tomorrow"
+        "retries"
       ],
       "blockers": [
-        "provider sandbox is flaky"
+        "waiting on client for test credentials"
       ],
       "due_dates": [],
       "confidence": 0.9
@@ -32,27 +47,57 @@
       "person": "Kai",
       "project": "Cedar",
       "done": [
-        "finished Cedar export button"
+        "dashboard filters"
       ],
-      "next": [],
+      "next": [
+        "pagination"
+      ],
       "blockers": [],
       "due_dates": [],
-      "confidence": 0.95
+      "confidence": 0.9
     },
     {
-      "person": "Lee",
-      "project": "Unassigned",
+      "person": "Nia",
+      "project": "Cedar",
       "done": [
-        "no update"
+        "data dictionary"
       ],
       "next": [],
       "blockers": [],
       "due_dates": [],
       "confidence": 0.9
+    },
+    {
+      "person": "Omar",
+      "project": "Beacon",
+      "done": [
+        "API guide",
+        "webhook tests"
+      ],
+      "next": [],
+      "blockers": [],
+      "due_dates": [],
+      "confidence": 0.9
+    },
+    {
+      "person": "Lee",
+      "project": "Atlas",
+      "done": [
+        "accessibility pass"
+      ],
+      "next": [],
+      "blockers": [
+        "legal approval still pending",
+        "handoff stuck"
+      ],
+      "due_dates": [],
+      "confidence": 0.9
     }
   ],
   "summaries": {
-    "internal": "This week, Atlas pushed checkout fixes and is set to run regression next. Beacon has the email wording approved but remains blocked by a flaky provider sandbox, with a retry planned. Cedar finished the export button, while other tracked items had no update.",
-    "client-facing": "This week, Mira pushed checkout fixes for Atlas and is moving on to regression testing, while Kai finished the export button for Cedar. Jon's work on Beacon is temporarily held up by an unstable provider sandbox, though the email wording has been approved and a retry is planned. Lee had no update this week, and we are still waiting on updates from Nia and Omar."
-  }
+    "internal": "For Atlas, the prototype and accessibility pass are complete; open items include the handoff, which remains stuck pending legal approval. For Beacon, the API guide and webhook tests are complete; retries remain pending, with progress blocked while awaiting client test credentials. For Cedar, dashboard filters and data dictionary are complete, with pagination still pending and no blockers noted.",
+    "client-facing": "Atlas completed the prototype and accessibility pass; pending work includes the handoff, while legal approval remains pending and the handoff is stuck. Beacon completed the API guide and webhook tests; upcoming work includes retries, with the client test credentials still awaited and the retries item blocked. Cedar completed the dashboard filters and data dictionary; pagination remains pending with no blockers noted."
+  },
+  "report_date": "2026-10-13",
+  "model": "workbuddy-deepseek-v4.1-flash"
 }

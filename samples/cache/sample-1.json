@@ -1,56 +1,112 @@
 {
+  "version": 2,
+  "fingerprint": "c6a016f2be7ed7a3b87fa593981b3499b8d772a4ca5ed6643ae1918f682a5ec0",
   "updates": [
     {
       "person": "Mira",
       "project": "Atlas",
       "done": [
-        "landing page shipped yesterday",
-        "QA checklist is finished"
+        "landing page",
+        "QA checklist"
       ],
       "next": [
-        "polish mobile layout by Friday"
+        "mobile polish"
       ],
-      "blockers": [
-        "waiting on copy approval"
-      ],
+      "blockers": [],
       "due_dates": [
-        "Friday"
+        "Fri"
       ],
-      "confidence": 0.95
+      "confidence": 0.9
     },
     {
       "person": "Jon",
       "project": "Beacon",
-      "done": [
-        "onboarding flow mostly done"
-      ],
+      "done": [],
       "next": [
-        "fix login edge case"
+        "onboarding flow"
       ],
       "blockers": [
         "login edge case still failing"
       ],
       "due_dates": [],
-      "confidence": 0.9
+      "confidence": 0.8
     },
     {
       "person": "Kai",
       "project": "Cedar",
       "done": [
-        "dashboard first draft is ready"
+        "dashboard draft",
+        "export button"
       ],
-      "next": [
-        "check responsive layout"
+      "next": [],
+      "blockers": [],
+      "due_dates": [],
+      "confidence": 0.8
+    },
+    {
+      "person": "Nia",
+      "project": "Atlas",
+      "done": [
+        "capacity review"
       ],
+      "next": [],
       "blockers": [
-        "charts look weird on small screens"
+        "waiting on client for copy approval"
       ],
       "due_dates": [],
-      "confidence": 0.9
+      "confidence": 0.8
+    },
+    {
+      "person": "Omar",
+      "project": "Beacon",
+      "done": [
+        "email copy"
+      ],
+      "next": [],
+      "blockers": [],
+      "due_dates": [],
+      "confidence": 0.8
+    },
+    {
+      "person": "Omar",
+      "project": "Cedar",
+      "done": [
+        "documentation review"
+      ],
+      "next": [],
+      "blockers": [],
+      "due_dates": [],
+      "confidence": 0.8
+    },
+    {
+      "person": "Lee",
+      "project": "Beacon",
+      "done": [
+        "release notes review"
+      ],
+      "next": [],
+      "blockers": [
+        "onboarding flow 还在等 Jon 的登录修复"
+      ],
+      "due_dates": [],
+      "confidence": 0.8
+    },
+    {
+      "person": "Lee",
+      "project": "Atlas",
+      "done": [
+        "QA checklist"
+      ],
+      "next": [],
+      "blockers": [],
+      "due_dates": [],
+      "confidence": 0.8
     }
   ],
   "summaries": {
-    "internal": "This week Atlas shipped its landing page and closed out the QA checklist, with mobile polish queued next and copy approval still pending. Beacon has the onboarding flow largely complete but remains stuck on a failing login edge case, which also leaves related work overdue. Cedar's dashboard first draft is ready, though charts need attention on small screens. No updates came in from Lee, Nia, or Omar.",
-    "client-facing": "This week, Atlas completed its landing page and QA checklist, with mobile layout polish planned and copy approval still pending. Beacon has nearly finished its onboarding flow but is working through a login edge case. Cedar has a first dashboard draft ready, though charts need adjustment on smaller screens."
-  }
+    "internal": "Atlas completed the capacity review, landing page, and QA checklist; the next pending item is mobile polish, and the remaining blocker is waiting on client copy approval. Beacon completed the release notes review and email copy; pending work includes the onboarding flow, which is blocked by a failing login edge case. Cedar completed the dashboard draft, export button, and documentation review, with no current blockers noted.",
+    "client-facing": "For Atlas, work completed includes the capacity review, the landing page, and the QA checklist; mobile polish is still pending, with copy approval from the client awaited. For Beacon, the release notes review and email copy are complete, while the onboarding flow remains pending and is blocked by an unresolved login edge case, which also holds up related work. For Cedar, the dashboard draft, the export button, and the documentation review are complete, with no outstanding blockers noted."
+  },
+  "report_date": "2026-10-13",
+  "model": "workbuddy-deepseek-v4.1-flash"
 }

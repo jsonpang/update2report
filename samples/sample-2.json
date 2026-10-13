@@ -1,4 +1,5 @@
-﻿{
-    "text":  "Standup: Mira pushed Atlas checkout fixes, done. Next run regression. Jon says Beacon email wording is approved, but provider sandbox is flaky so blocked; retry tomorrow. Kai finished Cedar export button. Lee had no update, was offline.",
-    "csv":  "tasks-2.csv"
+{
+  "text": "[Fictional Northwind Studio chat, report date 2026-10-13]\nMira [Atlas]: prototype done，已经发演示稿。handoff by Fri，客户说想再看看配色。\nJon [Beacon]: webhook tests finished; retries 还没做好，still waiting on client for test credentials。\nKai [Cedar]: dashboard filters 搞定了，已验收。pagination 我写成 pagnation 了，明天修这块代码。\nNia [Cedar]: data dictionary 已整理完成，中英字段对照也补齐了。\nOmar [Beacon]: API guide done; webhook tests 也完成了，就是 Jon 上面说的同一组，不是新的。\nLee [Atlas]: accessibility pass 完成；键盘导航过了。legal approval still pending，handoff 卡在这。\nJon [Beacon]: 补充 webhook tests done；retries 是 next，不要把它算成完成哈。\nMira [Atlas]: prototype done 再确认一次，handoff 日期只说 by Fri 还没确认具体时间。",
+  "csv": "tasks-2.csv",
+  "expected_completed": {"Atlas": 2, "Beacon": 2, "Cedar": 2}
 }
