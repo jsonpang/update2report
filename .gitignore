@@ -1,6 +1,7 @@
-﻿.env
+.env
 __pycache__/
 .pytest_cache/
 *.py[cod]
 out/*
 !out/.gitkeep
+report.md

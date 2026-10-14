@@ -13,12 +13,13 @@ license: mit
 
 # Update2Report
 
-Turn messy team notes into a printable weekly HTML report and an Excel workbook. All bundled Northwind Studio data is fictional.
+Turn messy team notes into a printable weekly HTML report and an Excel workbook. Open-weight models are the core of Update2Report—they extract structured tasks from unstructured updates and draft natural summaries, while deterministic Python code computes trusted statistics and cross-checks every number in the summary against ground truth. The public demo uses the official DeepSeek API (`deepseek-chat`) by default, while teams can run open-weight models locally via Ollama (such as `qwen2.5:7b`), keeping sensitive project data entirely on-device. All bundled Northwind Studio data is fictional.
 
 ## Run locally
 
 ```powershell
-Set-Location C:\soft\work_collab\hackathon\update2report
+git clone https://github.com/jsonpang/weeklyreport-ai.git
+cd weeklyreport-ai
 python -m pip install -r requirements.txt
 Copy-Item .env.example .env
 # Edit .env with your own endpoint, key and model, then start:
@@ -29,7 +30,14 @@ Open http://127.0.0.1:7860. Load a sample, select internal or client-facing tone
 
 ## Model setup and privacy
 
-The app reads only LLM_BASE_URL, LLM_API_KEY and LLM_MODEL for its OpenAI-compatible model integration. Set all three before live generation. For local processing, use an installed open-weight Ollama model and a local base URL. Notes stay on the machine only when your endpoint is local. Cached samples need no model credentials. Do not paste sensitive data into a public demo. Uploads and generated reports remain on its server until cleanup or restart.
+Open-weight models power Update2Report's core intelligence. The app connects to any OpenAI-compatible API endpoint using `LLM_BASE_URL`, `LLM_API_KEY`, and `LLM_MODEL`. Set all three before live generation.
+
+| Provider | LLM_BASE_URL | LLM_MODEL |
+|---|---|---|
+| DeepSeek official | `https://api.deepseek.com` | `deepseek-chat` |
+| Local Ollama | `http://localhost:11434/v1` | `qwen2.5:7b` |
+
+For local processing, use an installed open-weight model (such as `qwen2.5:7b`) via Ollama and a local base URL (for Ollama, `LLM_API_KEY` can be set to any placeholder like `ollama`). Notes stay on the machine only when your endpoint is local, ensuring complete data privacy. Cached samples need no model credentials. Do not paste sensitive data into a public demo. Uploads and generated reports remain on its server until cleanup or restart.
 
 ## Trusted statistics
 
@@ -53,7 +61,7 @@ Configure Settings > Variables and secrets:
 | LLM_BASE_URL | Variable or Secret | Publicly reachable OpenAI-compatible API base URL |
 | LLM_MODEL | Variable or Secret | Exact model ID supported by that endpoint |
 
-Use the DeepSeek official API for the public demo as planned. A cloud Space cannot reach the Windows localhost proxy. Cached samples work in either tone even before secrets are configured. See the [Spaces configuration reference](https://huggingface.co/docs/hub/spaces-config-reference) and [Spaces secrets documentation](https://huggingface.co/docs/hub/spaces-overview).
+Use the DeepSeek official API for the public demo as planned. A cloud Space cannot reach a localhost endpoint. Cached samples work in either tone even before secrets are configured. See the [Spaces configuration reference](https://huggingface.co/docs/hub/spaces-config-reference) and [Spaces secrets documentation](https://huggingface.co/docs/hub/spaces-overview).
 
 ## Verification and sample refresh
 
@@ -63,4 +71,4 @@ python scripts/refresh_samples.py
 python scripts/check_reports.py
 ```
 
-Refresh performs real extraction and both summary tones with the configured model, updates only fictional sample caches, writes HTML/Excel and records elapsed time and API-reported token totals. It deliberately bypasses the cache. The checker compares each HTML snapshot row with its counted-completion evidence and deterministic stats. See report.md for the latest observed results and the acceptance checklist.
+Refresh performs real extraction and both summary tones with the configured model, updates only fictional sample caches, writes HTML/Excel and records elapsed time and API-reported token totals. It deliberately bypasses the cache. The checker compares each HTML snapshot row with its counted-completion evidence and deterministic stats.
