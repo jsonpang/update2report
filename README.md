@@ -13,7 +13,7 @@ license: mit
 
 # Update2Report
 
-Turn messy team notes into a printable weekly HTML report and an Excel workbook. Open-weight models are the core of Update2Report—they extract structured tasks from unstructured updates and draft natural summaries, while deterministic Python code computes trusted statistics and cross-checks every number in the summary against ground truth. The public demo uses the official DeepSeek API (`deepseek-chat`) by default, while teams can run open-weight models locally via Ollama (such as `qwen2.5:7b`), keeping sensitive project data entirely on-device. All bundled Northwind Studio data is fictional.
+Turn messy team notes into a printable weekly HTML report and an Excel workbook. Open-weight models are the core of Update2Report—they extract structured tasks from unstructured updates and draft natural summaries, while deterministic Python code computes trusted statistics and cross-checks every number in the summary against ground truth. The public demo calls a hosted DeepSeek open-weight model through an OpenAI-compatible gateway; switch `LLM_BASE_URL` to the DeepSeek official API or a local Ollama instance to use a different backend. All bundled Northwind Studio data is fictional.
 
 ## Run locally
 
@@ -49,19 +49,52 @@ Upload optional UTF-8 CSV with task,owner,project,due,status columns and ISO YYY
 
 Live generation allows 5 attempts per Gradio session, including model failures. Combined notes and decoded CSV are limited to 8000 characters; file uploads are limited to 32 KB. Both sample tones are cached and matched to the notes AND CSV content, so unchanged samples use no tokens. Editing notes or replacing CSV uses a live attempt. A new browser session resets the quota; this is demo cost protection, not account-level abuse prevention. Model requests have a 45-second timeout and one transport retry; invalid extraction JSON gets one correction attempt. Errors return a friendly message without exposing provider details. Live outputs have independent directories and never modify sample caches.
 
-## Hugging Face Spaces preparation (not deployed)
+## Self-hosting
 
-Create a Space with the Gradio SDK and upload the tracked repository, including samples/cache. Exclude .env, .git, out and local logs. The YAML above selects app.py, Python 3.11 and verified Gradio 5.50.0. Spaces binds to 0.0.0.0:7860; local startup uses 127.0.0.1:7860.
+Deploy behind nginx as a reverse-proxy with a systemd service.
 
-Configure Settings > Variables and secrets:
+### Minimal setup
 
-| Name | Kind | Value |
+```bash
+# 1. Upload code (no .git, .env, or out/)
+git archive HEAD | ssh user@host "mkdir -p /opt/update2report && tar -x -C /opt/update2report"
+
+# 2. Create a venv and install dependencies
+python3.11 -m venv /opt/update2report/.venv
+/opt/update2report/.venv/bin/pip install -r /opt/update2report/requirements.txt
+
+# 3. Create /etc/update2report.env (chmod 600) with:
+#    LLM_BASE_URL=<your OpenAI-compatible endpoint>
+#    LLM_API_KEY=<your key>
+#    LLM_MODEL=<model id>
+#    GRADIO_SERVER_NAME=127.0.0.1
+#    GRADIO_SERVER_PORT=7860
+
+# 4. systemd service (/etc/systemd/system/update2report.service)
+#    EnvironmentFile=/etc/update2report.env
+#    WorkingDirectory=/opt/update2report
+#    ExecStart=/opt/update2report/.venv/bin/python app.py
+#    Restart=always
+
+# 5. nginx reverse-proxy to 127.0.0.1:7860
+#    proxy_set_header X-Real-IP $remote_addr;
+#    proxy_set_header Upgrade $http_upgrade;
+#    proxy_read_timeout 120s;
+```
+
+### Environment variables
+
+| Variable | Default | Description |
 |---|---|---|
-| LLM_API_KEY | Secret | Your provider key, never included in Git or screenshots |
-| LLM_BASE_URL | Variable or Secret | Publicly reachable OpenAI-compatible API base URL |
-| LLM_MODEL | Variable or Secret | Exact model ID supported by that endpoint |
+| `GRADIO_SERVER_NAME` | `127.0.0.1` | Bind address for the Gradio server |
+| `GRADIO_SERVER_PORT` | `7860` | Bind port for the Gradio server |
+| `DEMO_LIVE` | `1` | Set to `0` to disable live generation (cached samples still work) |
+| `DEMO_PER_IP_HOURLY` | `5` | Max live generations per client IP per hour |
+| `DEMO_DAILY_CAP` | `60` | Max total live generations per UTC+8 calendar day |
 
-Use the DeepSeek official API for the public demo as planned. A cloud Space cannot reach a localhost endpoint. Cached samples work in either tone even before secrets are configured. See the [Spaces configuration reference](https://huggingface.co/docs/hub/spaces-config-reference) and [Spaces secrets documentation](https://huggingface.co/docs/hub/spaces-overview).
+When `DEMO_LIVE=0` the UI displays "Live generation is paused; cached samples still work." and all live generation requests return a friendly message without calling the model.
+
+If the model endpoint is unreachable or times out, the app returns "Live model is temporarily offline; cached samples still work." without exposing stack traces.
 
 ## Verification and sample refresh
 
