@@ -76,7 +76,7 @@ def test_edited_sample_text_bypasses_cached_extraction(monkeypatch, tmp_path):
         '[{"person":"New","project":"Atlas","done":["Fresh"],"next":[],"blockers":[],"due_dates":[],"confidence":0.9}]',
         'Fresh work is progressing.'
     ])
-    summary,html_path,excel_path,stats,tokens=service.generate_report('edited notes',None,'internal','sample-1',client=client)
+    summary,html_path,excel_path,stats,tokens=service.generate_report('New [Atlas]: Fresh work is progressing.',None,'internal','sample-1',client=client)
     assert summary == 'Fresh work is progressing.'
     assert Path(html_path).name == 'weekly_report.html'
     assert 'Stale' not in Path(html_path).read_text(encoding='utf-8')

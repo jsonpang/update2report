@@ -15,12 +15,12 @@ def render_html(payload):
     if payload['stats'].get('unassigned_blockers'):
         risks += f"<li>Blockers without an assigned project: {payload['stats']['unassigned_blockers']}</li>"
     return f'''<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><title>Northwind Studio Weekly Update</title>
+<html lang="en"><head><meta charset="utf-8"><title>Weekly Update</title>
 <style>body{{font:16px/1.55 Arial,sans-serif;color:#172033;max-width:900px;margin:40px auto;padding:0 24px;background:#f5f7fb}}
 main{{background:white;padding:36px;border-radius:18px;box-shadow:0 12px 40px #18234a14}}h1{{color:#263d78}}
 .summary{{font-size:19px;background:#eef3ff;padding:20px;border-radius:12px}}table{{width:100%;border-collapse:collapse}}
 td,th{{padding:12px;border-bottom:1px solid #e7eaf1;text-align:left}}@media print{{body{{margin:0;background:white}}main{{box-shadow:none}}}}</style>
-</head><body><main><small>Northwind Studio &middot; Weekly update &middot; {escape(payload['date'])} &middot; {escape(payload['tone'])}</small>
+</head><body><main><small>Weekly update &middot; {escape(payload['date'])} &middot; {escape(payload['tone'])}</small>
 <h1>Team progress</h1><p class="summary">{escape(payload['summary'])}</p>
 <h2>Project snapshot</h2><table><tr><th>Project</th><th>Completed</th><th>Blockers</th></tr>{projects}</table>
 <p>{escape(COMPLETION_RULE)}</p><h2>Counted completions</h2><ul>{evidence}</ul>

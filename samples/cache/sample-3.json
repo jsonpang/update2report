@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "fingerprint": "f78bbc267626cce9198a9e82cfd59139348752c9db00ea726412b589a877f0ca",
   "updates": [
     {
@@ -8,9 +8,7 @@
       "done": [
         "deployment notes"
       ],
-      "next": [
-        "deployment"
-      ],
+      "next": [],
       "blockers": [
         "waiting on client to approve the maintenance window"
       ],
@@ -41,7 +39,7 @@
       ],
       "blockers": [],
       "due_dates": [
-        "明天"
+        "tomorrow"
       ],
       "confidence": 0.9
     },
@@ -78,7 +76,7 @@
       ],
       "next": [],
       "blockers": [
-        "waiting on maintenance window"
+        "production release blocked, waiting for maintenance window"
       ],
       "due_dates": [],
       "confidence": 0.9
@@ -86,20 +84,7 @@
     {
       "person": "Kai",
       "project": "Cedar",
-      "done": [
-        "billing export"
-      ],
-      "next": [],
-      "blockers": [],
-      "due_dates": [],
-      "confidence": 0.9
-    },
-    {
-      "person": "Lee",
-      "project": "Atlas",
-      "done": [
-        "release checklist"
-      ],
+      "done": [],
       "next": [],
       "blockers": [],
       "due_dates": [],
@@ -107,9 +92,9 @@
     }
   ],
   "summaries": {
-    "internal": "For Atlas, the release checklist and deployment notes are complete, while the maintenance window approval from the client is still pending. For Beacon, the smoke tests and support FAQ are complete, with the FAQ awaiting client sign-off. For Cedar, the chart labels, archived migration, and billing export are complete, while currency mapping is pending.",
-    "client-facing": "For Atlas, the release checklist and deployment notes are complete, while deployment remains pending and both Lee and Mira cite the maintenance window awaiting client approval as a blocker. For Beacon, the smoke tests and support FAQ are complete, with the support FAQ awaiting client sign-off and performance tuning still in progress. For Cedar, chart labels, the archived migration, and the billing export are complete, and currency mapping is the remaining pending work with no blockers."
+    "internal": "Atlas: Lee completed the release checklist, and Mira's deployment notes are done, but the production release remains blocked pending the client's approval of the maintenance window; deployment is still only planned for Fri. Beacon: Jon's smoke tests and Omar's support FAQ are both complete, though the FAQ is still awaiting client sign-off; performance tuning remains in progress. Cedar: Nia's chart labels, Kai's billing export (also confirmed by Nia), and the archived migration are complete, while currency mapping is still planned with a typo to fix tomorrow.\n\nNumbers from source:\n- [Fictional Northwind Studio chat, report date 2026-10-13]",
+    "client-facing": "For Atlas, Mira’s deployment notes are done and Lee’s release checklist is complete, though production release remains blocked pending the maintenance window; Mira is still waiting on client approval and Lee’s deployment is only planned by Fri. For Beacon, Jon’s smoke tests are done and Omar’s support FAQ is complete, but sign-off is still pending and performance tuning is still being worked on. For Cedar, Kai’s billing export and Nia’s chart labels are finished, with Nia confirming the billing export as the same task Kai raised; Kai’s currency mapping has a typo in the thousands marker and will be handled tomorrow, and the archived migration completion is recorded only in the task table.\n\nNumbers from source:\n- [Fictional Northwind Studio chat, report date 2026-10-13]"
   },
-  "report_date": "2026-10-13",
+  "report_date": "2026-10-14",
   "model": "workbuddy-deepseek-v4.1-flash"
 }

@@ -32,7 +32,7 @@ def test_extract_normalizes_scalar_null_fields_and_missing_identity():
 
 def test_extract_accepts_valid_json_inside_a_single_markdown_fence():
     client = FakeClient(['```json\n[{"person":"Mira","project":"Atlas","done":["QA checklist"],"confidence":0.9}]\n```'])
-    result = extract_updates(client,'Mira: QA checklist done')
+    result = extract_updates(client,'Mira [Atlas]: QA checklist done')
     assert result[0].done == ['QA checklist']
     assert len(client.prompts) == 1
 
@@ -47,7 +47,8 @@ def test_stats_counts_completion_overdue_blockers_and_no_update():
     unknown = UpdateBundle.model_validate({'person':'Cai','project':'Unassigned','done':[],'next':[],'blockers':['Need owner'],'due_dates':[],'confidence':0.5})
     stats = calculate_stats([*updates, unknown], rows, date(2026, 10, 13), ['Ari','Bea','Cai'])
     assert 'Unassigned' not in stats['projects']
-    assert stats['unassigned_blockers'] == 1
+    assert stats['unassigned_blockers'] == 0
+    assert stats['projects']['Cai']['blockers'] == 1
 
 def test_summary_rejects_numbers_not_in_stats():
     stats = {'projects': {'Atlas': {'completed': 2, 'blockers': 1}}, 'overdue': [{'task':'x'}], 'no_updates': []}
@@ -80,7 +81,7 @@ def test_composer_retries_numbers_even_if_another_project_has_that_count():
     from update2report.compose import compose_summary
     stats = {'projects':{'Atlas':{'completed':1,'blockers':0},'Cedar':{'completed':2,'blockers':0}}}
     client = FakeClient(['Atlas completed two tasks.','Atlas finished its landing page.'])
-    assert compose_summary(client,[],stats,'internal') == 'Atlas finished its landing page.'
+    assert compose_summary(client,[],stats,'internal', source_text='Atlas finished its landing page. Cedar finished QA.') == 'Atlas finished its landing page.'
     assert len(client.prompts) == 2
 
 def test_text_completion_prevents_stale_csv_overdue_but_preserves_conflict():

@@ -6,7 +6,7 @@ def render_excel(payload, path):
     book = Workbook()
     summary = book.active
     summary.title = 'Summary'
-    summary.append(['Northwind Studio Weekly Update', payload['date']])
+    summary.append(['Weekly Update', payload['date']])
     summary.append(['Project', 'Completed', 'Blockers'])
     for name, values in payload['stats']['projects'].items(): summary.append([name, values['completed'], values['blockers']])
     summary.append(['Summary', payload['summary']])

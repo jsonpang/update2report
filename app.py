@@ -8,6 +8,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 import gradio as gr
 from update2report.service import generate_report, load_sample, is_cached_sample, validate_input
+from update2report.stats import statistics_table
 
 SAMPLES = ['sample-1', 'sample-2', 'sample-3']
 load_dotenv(Path(__file__).with_name('.env'), override=False)
@@ -125,7 +126,7 @@ def run_report(text, csv_file, tone, sample_id, live_count=0, request: gr.Reques
             text, csv_file, tone, sample_id=sample_id)
         if not cached:
             _log_call(ip, 'ok', _tokens)
-        return summary, html_file, excel_file, str(stats), live_count
+        return summary, html_file, excel_file, statistics_table(stats), live_count
     except ValueError as exc:
         return str(exc), None, None, '', live_count
     except RuntimeError as exc:
@@ -170,7 +171,7 @@ with gr.Blocks(title='Update2Report', analytics_enabled=False) as demo:
     with gr.Row():
         html_out = gr.File(label='Download HTML report')
         excel_out = gr.File(label='Download Excel workbook')
-    stats_out = gr.Textbox(label='Deterministic statistics', lines=6)
+    stats_out = gr.Markdown(label='Deterministic statistics')
     load.click(load_selected, inputs=sample, outputs=[updates,tasks,sample_state])
     generate.click(run_report, inputs=[updates,tasks,tone,sample_state,live_count], outputs=[summary,html_out,excel_out,stats_out,live_count], concurrency_limit=1, api_name=False)
 

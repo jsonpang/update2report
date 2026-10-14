@@ -6,6 +6,7 @@ from pathlib import Path
 from .schemas import UpdateBundle
 from .stats import calculate_stats, csv_task_rows
 from .compose import compose_summary, validate_summary_numbers
+from .evidence import missing_numbers, validate_identities
 from .render_html import render_html
 from .render_excel import render_excel
 from .llm import LLMClient
@@ -14,7 +15,7 @@ ROOT = Path(__file__).resolve().parent.parent
 SAMPLE_DIR = ROOT / 'samples'
 OUT_DIR = ROOT / 'out'
 MAX_INPUT_CHARS = 8000
-CACHE_VERSION = 2
+CACHE_VERSION = 3
 
 
 def input_fingerprint(text, csv_path):
@@ -76,9 +77,13 @@ def generate_report(text, csv_path=None, tone='internal', sample_id=None, client
     stats = calculate_stats(updates, tasks, report_date, members)
     if cached:
         summary = cached['summaries'][tone]
-        validate_summary_numbers(summary, stats, numeric_free=True)
+        source = text + '\n' + json.dumps(tasks, ensure_ascii=False)
+        validate_summary_numbers(summary, stats, source_text=source)
+        validate_identities(summary, source)
+        if missing_numbers(text, summary):
+            raise ValueError('Cached summary is missing source numbers; refresh the sample cache.')
     else:
-        summary = compose_summary(client, updates, stats, tone)
+        summary = compose_summary(client, updates, stats, tone, source_text=text, tasks=tasks)
     payload = {'date':report_date.isoformat(), 'tone':tone, 'summary':summary, 'updates':updates, 'stats':stats}
     directory = Path(tempfile.mkdtemp(prefix='report-', dir=OUT_DIR))
     prefix = f'{sample_id}_' if cached else ''

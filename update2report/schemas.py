@@ -1,5 +1,8 @@
 ﻿from pydantic import BaseModel, Field, field_validator
 
+import re
+from pydantic import model_validator
+
 class UpdateBundle(BaseModel):
     person: str = Field(min_length=1)
     project: str = Field(min_length=1)
@@ -8,6 +11,18 @@ class UpdateBundle(BaseModel):
     blockers: list[str] = Field(default_factory=list)
     due_dates: list[str] = Field(default_factory=list)
     confidence: float = Field(ge=0, le=1)
+
+    @model_validator(mode='after')
+    def group_owner_and_quantity_details(self):
+        if self.project.casefold() in {'unassigned', 'unknown'} and self.person != 'Unknown':
+            self.project = self.person
+        quantities = [task for task in self.done if re.fullmatch(
+            r'(?:fixed\s+)?\d+\s+bugs?(?:\s+fixed)?[.!]?', task.strip(), re.I)]
+        primary = [task for task in self.done if task not in quantities]
+        if primary and quantities:
+            primary[0] += '; ' + '; '.join(quantities)
+            self.done = primary
+        return self
 
     @field_validator('person', mode='before')
     @classmethod

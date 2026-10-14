@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "fingerprint": "e9ae10dfbfe90ebb826649bf84569604212621c95123263b2707b412fea76cd1",
   "updates": [
     {
@@ -8,23 +8,13 @@
       "done": [
         "prototype"
       ],
-      "next": [],
-      "blockers": [],
-      "due_dates": [
-        "by Fri"
-      ],
-      "confidence": 0.9
-    },
-    {
-      "person": "Mira",
-      "project": "Atlas",
-      "done": [],
       "next": [
         "handoff"
       ],
       "blockers": [],
       "due_dates": [
-        "by Fri"
+        "by Fri",
+        "2026-10-16"
       ],
       "confidence": 0.9
     },
@@ -38,10 +28,13 @@
         "retries"
       ],
       "blockers": [
-        "waiting on client for test credentials"
+        "still waiting on client for test credentials"
       ],
-      "due_dates": [],
-      "confidence": 0.9
+      "due_dates": [
+        "2026-10-11",
+        "2026-10-12"
+      ],
+      "confidence": 0.95
     },
     {
       "person": "Kai",
@@ -53,8 +46,11 @@
         "pagination"
       ],
       "blockers": [],
-      "due_dates": [],
-      "confidence": 0.9
+      "due_dates": [
+        "2026-10-13",
+        "2026-10-15"
+      ],
+      "confidence": 0.95
     },
     {
       "person": "Nia",
@@ -64,8 +60,10 @@
       ],
       "next": [],
       "blockers": [],
-      "due_dates": [],
-      "confidence": 0.9
+      "due_dates": [
+        "2026-10-14"
+      ],
+      "confidence": 0.85
     },
     {
       "person": "Omar",
@@ -76,7 +74,9 @@
       ],
       "next": [],
       "blockers": [],
-      "due_dates": [],
+      "due_dates": [
+        "2026-10-14"
+      ],
       "confidence": 0.9
     },
     {
@@ -88,16 +88,19 @@
       "next": [],
       "blockers": [
         "legal approval still pending",
-        "handoff stuck"
+        "handoff 卡在这"
       ],
-      "due_dates": [],
+      "due_dates": [
+        "2026-10-13",
+        "2026-10-16"
+      ],
       "confidence": 0.9
     }
   ],
   "summaries": {
-    "internal": "For Atlas, the prototype and accessibility pass are complete; open items include the handoff, which remains stuck pending legal approval. For Beacon, the API guide and webhook tests are complete; retries remain pending, with progress blocked while awaiting client test credentials. For Cedar, dashboard filters and data dictionary are complete, with pagination still pending and no blockers noted.",
-    "client-facing": "Atlas completed the prototype and accessibility pass; pending work includes the handoff, while legal approval remains pending and the handoff is stuck. Beacon completed the API guide and webhook tests; upcoming work includes retries, with the client test credentials still awaited and the retries item blocked. Cedar completed the dashboard filters and data dictionary; pagination remains pending with no blockers noted."
+    "internal": "**Atlas:** Mira completed the prototype; Lee completed the accessibility pass, and the handoff is blocked by pending legal approval (\"法律审批仍然待定\").  \n**Beacon:** Jon and Omar both completed webhook tests (same set, not new), and Omar completed the API guide; Jon's retries are next and blocked, with \"still waiting on client for test credentials\" as the cause.  \n**Cedar:** Kai completed dashboard filters, and Nia completed the data dictionary; Kai's pagination is planned, and Kai will fix \"pagnation\" in that code tomorrow.\n\nNumbers from source:\n- [Fictional Northwind Studio chat, report date 2026-10-13]",
+    "client-facing": "For Atlas, Mira’s prototype is done and Lee’s accessibility pass is done; the handoff is blocked because legal approval is still pending, and the customer would like to review the color scheme again. For Beacon, Jon’s webhook tests and Omar’s API guide are done; retries are next and are not completed, and work is still waiting on client test credentials. For Cedar, Kai’s dashboard filters are done and Nia’s data dictionary is done; Kai’s pagination work is planned for tomorrow.\n\nNumbers from source:\n- [Fictional Northwind Studio chat, report date 2026-10-13]"
   },
-  "report_date": "2026-10-13",
+  "report_date": "2026-10-14",
   "model": "workbuddy-deepseek-v4.1-flash"
 }
