@@ -13,7 +13,7 @@ license: mit
 
 # Update2Report
 
-Turn messy team notes into a printable weekly HTML report and an Excel workbook. Open-weight models are the core of Update2Report—they extract structured tasks from unstructured updates and draft natural summaries, while deterministic Python code computes trusted statistics and cross-checks every number in the summary against ground truth. The public demo calls a hosted DeepSeek open-weight model through an OpenAI-compatible gateway; switch `LLM_BASE_URL` to the DeepSeek official API or a local Ollama instance to use a different backend. All bundled Northwind Studio data is fictional.
+Turn messy team notes into a printable weekly HTML report and an Excel workbook. Open-weight models are the core of Update2Report—they extract structured tasks from unstructured updates and draft natural summaries, while deterministic Python code computes trusted statistics and cross-checks every number in the summary against ground truth. The public demo runs OpenAI's open-weight gpt-oss-120b (Apache 2.0) through an OpenAI-compatible gateway; point `LLM_BASE_URL` at another provider or a local Ollama instance to use a different backend. All bundled Northwind Studio data is fictional.
 
 ## Run locally
 
@@ -43,11 +43,11 @@ For local processing, use an installed open-weight model (such as `qwen2.5:7b`) 
 
 Completed = extracted done items + CSV tasks in done/complete/completed/closed or Chinese completion states. Deduplicate within each project using Unicode NFKC, case folding, ignoring whitespace/punctuation and an optional project prefix. Owners do not affect identity. Extraction uses exact CSV task names where applicable and canonical names for repeated multilingual mentions. Different unmatched paraphrases remain separate; there is no fuzzy merge. HTML and Excel show every counted task and its text/CSV sources. Chat can record completion while CSV still says in progress. Text-completed tasks are excluded from overdue; stale CSV statuses are listed separately for reconciliation. Relative dates in notes remain verbatim.
 
-Upload optional UTF-8 CSV with task,owner,project,due,status columns and ISO YYYY-MM-DD due dates. Counts are computed in Python. The numeric-free model summary is checked for unsupported numbers; this does not independently prove semantic extraction accuracy.
+Upload optional UTF-8 CSV with task,owner,project,due,status columns and ISO YYYY-MM-DD due dates. Counts are computed in Python. The model summary must keep every number from the source and may not add numbers that are not in it; this does not independently prove semantic extraction accuracy.
 
 ## Demo limits
 
-Live generation allows 5 attempts per Gradio session, including model failures. Combined notes and decoded CSV are limited to 8000 characters; file uploads are limited to 32 KB. Both sample tones are cached and matched to the notes AND CSV content, so unchanged samples use no tokens. Editing notes or replacing CSV uses a live attempt. A new browser session resets the quota; this is demo cost protection, not account-level abuse prevention. Model requests have a 45-second timeout and one transport retry; invalid extraction JSON gets one correction attempt. Errors return a friendly message without exposing provider details. Live outputs have independent directories and never modify sample caches.
+Live generation is capped at 5 attempts per Gradio session, 5 per IP per hour (`DEMO_PER_IP_HOURLY`) and 60 per day (`DEMO_DAILY_CAP`); `DEMO_LIVE=0` pauses live generation while cached samples keep working. Combined notes and decoded CSV are limited to 8000 characters; file uploads are limited to 32 KB. Both sample tones are cached and matched to the notes AND CSV content, so unchanged samples use no tokens. Editing notes or replacing CSV uses a live attempt. A new browser session resets only the session quota; the per-IP and daily caps still apply. This is demo cost protection, not account-level abuse prevention. Model requests have a 45-second timeout and one transport retry; invalid extraction JSON gets one correction attempt. Errors return a friendly message without exposing provider details. Live outputs have independent directories and never modify sample caches.
 
 ## Self-hosting
 
