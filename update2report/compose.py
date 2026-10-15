@@ -37,6 +37,15 @@ def validate_summary_numbers(summary, stats, numeric_free=False, source_text=Non
     if unsupported:
         raise ValueError(f'Summary contains numbers absent from deterministic stats: {", ".join(unsupported)}')
 
+# Some models emit narrow no-break spaces and hyphens that render cramped
+# ("fixed\u202f3\u202fbugs"); reports should use plain characters.
+_PLAIN = str.maketrans({'\u202f': ' ', '\u00a0': ' ', '\u2007': ' ', '\u2009': ' ', '\u2011': '-'})
+
+
+def plain_spacing(text):
+    return text.translate(_PLAIN)
+
+
 def compose_summary(client, updates, stats, tone, source_text=None, tasks=None):
     grouped = {project:{'completed':stats.get('completion_items',{}).get(project,[]),
                        'updates':[u.model_dump() for u in updates if u.project == project]}
@@ -49,6 +58,7 @@ def compose_summary(client, updates, stats, tone, source_text=None, tasks=None):
             "Write 2-4 concise sentences. For each project, mention all completed task names in completion_items, "
             "including CSV-only items. Keep pending work and blockers separate from completions. "
             "Use a separate sentence for each project. Never move a blocker to another project. "
+            "Keep each blocker with the person and task it was reported with; never attach it to a teammate's work. "
             "Preserve blocker causes; do not reinterpret extraction confidence as deadline certainty. "
             "status_conflicts indicate stale CSV statuses to reconcile, not unfinished or overdue tasks. "
             "Never say a whole project is finished. Avoid unsupported judgments such as on track. "
@@ -56,7 +66,7 @@ def compose_summary(client, updates, stats, tone, source_text=None, tasks=None):
             "Do not derive additional counts from task lists or statistics, even as number words. "
             "Mention in-progress tasks with their original percentage; partial completion means started, not still to come.")
     for attempt in range(2):
-        summary = client.complete(SYSTEM, user).strip()
+        summary = plain_spacing(client.complete(SYSTEM, user)).strip()
         missing = missing_numbers(required, summary)
         try:
             validate_summary_numbers(summary, stats, source_text=source)

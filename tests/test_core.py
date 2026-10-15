@@ -108,3 +108,8 @@ def test_distinct_projects_stay_separate():
     from update2report.schemas import UpdateBundle
     ups = [UpdateBundle(person='A', project='Harbor Billing', confidence=1), UpdateBundle(person='B', project='Harbor', confidence=1)]
     assert [u.project for u in unify_projects(ups)] == ['Harbor Billing', 'Harbor']
+
+
+def test_summary_spacing_is_plain():
+    from update2report.compose import plain_spacing
+    assert plain_spacing('fixed 3 bugs; push‑notifications') == 'fixed 3 bugs; push-notifications'
