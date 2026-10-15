@@ -128,20 +128,27 @@ def run_report(text, csv_file, tone, sample_id, live_count=0, request: gr.Reques
             _log_call(ip, 'ok', _tokens)
         return summary, html_file, excel_file, statistics_table(stats), live_count
     except ValueError as exc:
+        gr.Warning(str(exc))
         return str(exc), None, None, '', live_count
     except RuntimeError as exc:
         # LLM connectivity / timeout errors raised by LLMClient
         msg = str(exc)
         if 'unavailable' in msg.lower() or 'timed out' in msg.lower():
             _log_call(ip, 'offline', 0)
-            return ('Live model is temporarily offline; cached samples still work.',
+            offline_msg = 'Live model is temporarily offline; cached samples still work.'
+            gr.Warning(offline_msg)
+            return (f'> ⚠️ **{offline_msg}**',
                     None, None, '', live_count)
         _log_call(ip, 'error', 0)
-        return ('Generation failed. Please check model settings or try a cached sample.',
+        err_msg = 'Generation failed. Please check model settings or try a cached sample.'
+        gr.Warning(err_msg)
+        return (f'> ⚠️ **{err_msg}**',
                 None, None, '', live_count)
     except Exception:
         _log_call(ip, 'error', 0)
-        return ('Generation failed. Please check model settings or try a cached sample.',
+        err_msg = 'Generation failed. Please check model settings or try a cached sample.'
+        gr.Warning(err_msg)
+        return (f'> ⚠️ **{err_msg}**',
                 None, None, '', live_count)
 
 

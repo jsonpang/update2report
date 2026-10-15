@@ -30,7 +30,7 @@ Open http://127.0.0.1:7860. Load a sample, select internal or client-facing tone
 
 ## Model setup and privacy
 
-Open-weight models power Update2Report's core intelligence. The app connects to any OpenAI-compatible API endpoint using `LLM_BASE_URL`, `LLM_API_KEY`, and `LLM_MODEL`. Set all three before live generation.
+Open-weight models power Update2Report's core intelligence. The app connects to any OpenAI-compatible API endpoint using `LLM_BASE_URL`, `LLM_API_KEY`, and `LLM_MODEL`. Set all three before live generation. An optional `LLM_FALLBACK_MODEL` can be configured to automatically retry requests with a secondary model if the primary model encounters rate limits (429), server errors (5xx), timeouts, or connection failures.
 
 | Provider | LLM_BASE_URL | LLM_MODEL |
 |---|---|---|
@@ -91,6 +91,7 @@ python3.11 -m venv /opt/update2report/.venv
 | `DEMO_LIVE` | `1` | Set to `0` to disable live generation (cached samples still work) |
 | `DEMO_PER_IP_HOURLY` | `5` | Max live generations per client IP per hour |
 | `DEMO_DAILY_CAP` | `60` | Max total live generations per UTC+8 calendar day |
+| `LLM_FALLBACK_MODEL` | (none) | Optional secondary model to retry when primary model fails |
 
 When `DEMO_LIVE=0` the UI displays "Live generation is paused; cached samples still work." and all live generation requests return a friendly message without calling the model.
 

@@ -1,5 +1,39 @@
-﻿import os
-from openai import OpenAI, OpenAIError
+import os
+import sys
+import logging
+from openai import (
+    OpenAI,
+    OpenAIError,
+    APIConnectionError,
+    APITimeoutError,
+    RateLimitError,
+    InternalServerError,
+)
+
+_log = logging.getLogger('update2report.llm')
+if not _log.handlers:
+    _handler = logging.StreamHandler(sys.stdout)
+    _handler.setFormatter(logging.Formatter('%(message)s'))
+    _log.addHandler(_handler)
+    _log.setLevel(logging.INFO)
+
+
+def _is_retryable_error(exc: Exception) -> bool:
+    if isinstance(exc, (APIConnectionError, APITimeoutError, RateLimitError, InternalServerError, TimeoutError, ConnectionError)):
+        return True
+    status_code = getattr(exc, 'status_code', None)
+    if status_code is not None:
+        try:
+            code = int(status_code)
+            if code == 429 or code >= 500:
+                return True
+        except (ValueError, TypeError):
+            pass
+    msg = str(exc).lower()
+    if '429' in msg or 'timeout' in msg or 'connection' in msg or 'queue.full' in msg:
+        return True
+    return False
+
 
 class LLMClient:
     def __init__(self):
@@ -10,12 +44,32 @@ class LLMClient:
         self.model = os.getenv('LLM_MODEL')
         if not self.model:
             raise RuntimeError('LLM_MODEL is required')
+        fallback = os.getenv('LLM_FALLBACK_MODEL')
+        self.fallback_model = fallback.strip() if fallback and fallback.strip() else None
+        self.actual_model = None
+        self.last_model = None
         self.total_tokens = 0
+
     def complete(self, system, user):
+        messages = [{'role': 'system', 'content': system}, {'role': 'user', 'content': user}]
         try:
-            result = self.client.chat.completions.create(model=self.model, messages=[{'role':'system','content':system},{'role':'user','content':user}], temperature=0.2)
-        except OpenAIError:
-            raise RuntimeError('The model service is unavailable or timed out after one retry. Please try again later, or load a cached sample.') from None
+            result = self.client.chat.completions.create(model=self.model, messages=messages, temperature=0.2)
+            self.actual_model = self.model
+            self.last_model = self.model
+            _log.info('llm_call model=%s result=ok', self.model)
+        except (OpenAIError, TimeoutError, ConnectionError) as exc:
+            if self.fallback_model and _is_retryable_error(exc):
+                _log.warning('llm_fallback primary=%s fallback=%s reason=%s', self.model, self.fallback_model, exc)
+                try:
+                    result = self.client.chat.completions.create(model=self.fallback_model, messages=messages, temperature=0.2)
+                    self.actual_model = self.fallback_model
+                    self.last_model = self.fallback_model
+                    _log.info('llm_call model=%s result=ok (fallback)', self.fallback_model)
+                except (OpenAIError, TimeoutError, ConnectionError):
+                    raise RuntimeError('The model service is unavailable or timed out after one retry. Please try again later, or load a cached sample.') from None
+            else:
+                raise RuntimeError('The model service is unavailable or timed out after one retry. Please try again later, or load a cached sample.') from None
+
         if result.usage:
             self.total_tokens += result.usage.total_tokens or 0
         return result.choices[0].message.content or '' if result.choices else ''
