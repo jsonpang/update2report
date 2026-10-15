@@ -6,6 +6,34 @@ from .evidence import missing_numbers, numbers
 
 SYSTEM = "Extract only explicitly stated facts from the team update. Return only a JSON array, no Markdown, of objects with person, project, done, next, blockers, due_dates, confidence (0..1). Do not infer missing facts."
 
+# Words that name what a project is rather than which project it is.
+GENERIC_PROJECT_WORDS = {'app', 'application', 'project', 'service', 'site', 'website', 'web', 'team', 'platform', 'product'}
+
+
+def project_key(name):
+    words = re.findall(r'\w+', name.casefold())
+    core = [w for w in words if w not in GENERIC_PROJECT_WORDS]
+    return ' '.join(core or words)
+
+
+def unify_projects(updates):
+    """Merge spellings like "Harbor" and "Harbor app" into one project.
+
+    The most frequently used spelling wins; ties go to the shorter one.
+    Purely deterministic, so statistics stay reproducible."""
+    groups = {}
+    for u in updates:
+        groups.setdefault(project_key(u.project), []).append(u.project)
+    canonical = {}
+    for names in groups.values():
+        best = min(set(names), key=lambda n: (-names.count(n), len(n), n))
+        for n in names:
+            canonical[n] = best
+    for u in updates:
+        u.project = canonical[u.project]
+    return updates
+
+
 def extract_updates(client, text, tasks=None, report_date=None):
     context = (f'Report date: {report_date}. Keep relative dates verbatim; do not guess calendar dates. '
                f'CSV task names: {json.dumps(tasks or [], ensure_ascii=False)}. '
@@ -20,6 +48,7 @@ def extract_updates(client, text, tasks=None, report_date=None):
                'Use the person as project when no project is explicitly named; never invent a project or speaker. '
                'blockers must preserve the specific cause (e.g. waiting on client credentials or legal approval), not just a task name. '
                'Include every speaker, merge their messages by person/project. '
+               'Use one consistent name per project; do not write both "Harbor" and "Harbor app" for the same project. '
                'Waiting on someone is a blocker; mostly done is not done. Never infer completion from CSV.\n')
     prompt = context + text
     last_error = None
@@ -45,7 +74,7 @@ def extract_updates(client, text, tasks=None, report_date=None):
                         raise ValueError('Identity absent from source: ' + name)
             if set(numbers(evidence)) - set(numbers(source)):
                 raise ValueError('Extracted numbers absent from source')
-            return updates
+            return unify_projects(updates)
         except Exception as exc:
             last_error = exc
             prompt = f"{context}{text}\n\nYour previous response failed validation: {exc}. Return corrected JSON only. Previous response: {raw}"

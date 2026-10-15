@@ -91,3 +91,20 @@ def test_text_completion_prevents_stale_csv_overdue_but_preserves_conflict():
     assert stats['projects']['Atlas']['completed'] == 1
     assert stats['overdue'] == []
     assert stats['status_conflicts'] == [row]
+
+
+def test_project_spellings_are_unified():
+    from update2report.extract import unify_projects
+    from update2report.schemas import UpdateBundle
+    ups = [UpdateBundle(person='Dana', project='Harbor app', done=['invoice export'], confidence=1),
+           UpdateBundle(person='Eli', project='Harbor', next=['push queue'], confidence=1),
+           UpdateBundle(person='Gus', project='harbor', next=['docs'], confidence=1),
+           UpdateBundle(person='Fay', project='Lumen', done=['articles'], confidence=1)]
+    assert [u.project for u in unify_projects(ups)] == ['Harbor', 'Harbor', 'Harbor', 'Lumen']
+
+
+def test_distinct_projects_stay_separate():
+    from update2report.extract import unify_projects
+    from update2report.schemas import UpdateBundle
+    ups = [UpdateBundle(person='A', project='Harbor Billing', confidence=1), UpdateBundle(person='B', project='Harbor', confidence=1)]
+    assert [u.project for u in unify_projects(ups)] == ['Harbor Billing', 'Harbor']
