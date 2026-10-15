@@ -131,3 +131,14 @@ def test_no_fallback_model_does_not_retry_on_429(monkeypatch):
         client.complete('sys', 'user')
     assert calls == ['primary-model']
 
+
+
+def test_fallback_delay_waits_before_retry(monkeypatch):
+    import update2report.llm as llm
+    slept = []
+    monkeypatch.setattr(llm.time, 'sleep', lambda s: slept.append(s))
+    monkeypatch.setenv('LLM_BASE_URL', 'http://x/v1')
+    monkeypatch.setenv('LLM_MODEL', 'm')
+    monkeypatch.setenv('LLM_FALLBACK_MODEL', 'm')
+    monkeypatch.setenv('LLM_FALLBACK_DELAY', '6')
+    assert llm.LLMClient().fallback_delay == 6.0

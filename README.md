@@ -30,7 +30,7 @@ Open http://127.0.0.1:7860. Load a sample, select internal or client-facing tone
 
 ## Model setup and privacy
 
-Open-weight models power Update2Report's core intelligence. The app connects to any OpenAI-compatible API endpoint using `LLM_BASE_URL`, `LLM_API_KEY`, and `LLM_MODEL`. Set all three before live generation. An optional `LLM_FALLBACK_MODEL` can be configured to automatically retry requests with a secondary model if the primary model encounters rate limits (429), server errors (5xx), timeouts, or connection failures.
+Open-weight models power Update2Report's core intelligence. The app connects to any OpenAI-compatible API endpoint using `LLM_BASE_URL`, `LLM_API_KEY`, and `LLM_MODEL`. Set all three before live generation. An optional `LLM_FALLBACK_MODEL` can be configured to automatically retry requests with a secondary model if the primary model encounters rate limits (429), server errors (5xx), timeouts, or connection failures. `LLM_FALLBACK_DELAY` (seconds, default 0) waits before that retry; setting the fallback to the primary model with a short delay rides out brief rate limits.
 
 | Provider | LLM_BASE_URL | LLM_MODEL |
 |---|---|---|

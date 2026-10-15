@@ -1,4 +1,5 @@
 import os
+import time
 import sys
 import logging
 from openai import (
@@ -46,6 +47,7 @@ class LLMClient:
             raise RuntimeError('LLM_MODEL is required')
         fallback = os.getenv('LLM_FALLBACK_MODEL')
         self.fallback_model = fallback.strip() if fallback and fallback.strip() else None
+        self.fallback_delay = float(os.getenv('LLM_FALLBACK_DELAY') or 0)
         self.actual_model = None
         self.last_model = None
         self.total_tokens = 0
@@ -60,6 +62,9 @@ class LLMClient:
         except (OpenAIError, TimeoutError, ConnectionError) as exc:
             if self.fallback_model and _is_retryable_error(exc):
                 _log.warning('llm_fallback primary=%s fallback=%s reason=%s', self.model, self.fallback_model, exc)
+                # Rate limits are often seconds long; LLM_FALLBACK_DELAY lets a
+                # fallback to the same model wait them out.
+                time.sleep(self.fallback_delay)
                 try:
                     result = self.client.chat.completions.create(model=self.fallback_model, messages=messages, temperature=0.2)
                     self.actual_model = self.fallback_model
