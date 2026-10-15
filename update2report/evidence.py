@@ -23,3 +23,9 @@ def validate_identities(output, source):
                 if not all(part in known | starters for part in word.casefold().split('-'))]
     if invented:
         raise ValueError('Names absent from source: ' + ', '.join(dict.fromkeys(invented)))
+
+
+def without_header(text):
+    """Drop "[... report date YYYY-MM-DD]" header lines: context, not figures to preserve."""
+    return '\n'.join(line for line in text.splitlines()
+                     if not (line.startswith('[') and 'report date' in line.lower()))

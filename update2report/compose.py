@@ -1,7 +1,7 @@
 import re
 import json
 
-from .evidence import numbers, missing_numbers, validate_identities
+from .evidence import numbers, missing_numbers, validate_identities, without_header
 
 SYSTEM = "Write a concise weekly report summary from supplied evidence. Preserve every original quantity and percentage verbatim with its task and owner. Never invent people, projects, metrics, counts, percentages, dates, or numbers. Partial progress is in progress, never not started or completed."
 UNQUANTIFIED_COUNT_WORDS = {'multiple', 'several', 'few', 'couple', 'dozen', 'dozens', 'pair'}
@@ -54,11 +54,13 @@ def compose_summary(client, updates, stats, tone, source_text=None, tasks=None):
     source = (source_text if source_text is not None else extracted) + '\n' + json.dumps(
         (tasks or []) if source_text is not None else stats.get('completion_items', {}), ensure_ascii=False)
     required = source_text if source_text is not None else extracted
+    required = without_header(required)
     user = (f"Tone: {tone}. Original source: {source}. Evidence grouped by project: {json.dumps(grouped,ensure_ascii=False)}. "
             "Write 2-4 concise sentences. For each project, mention all completed task names in completion_items, "
             "including CSV-only items. Keep pending work and blockers separate from completions. "
             "Use a separate sentence for each project. Never move a blocker to another project. "
             "Keep each blocker with the person and task it was reported with; never attach it to a teammate's work. "
+            "Every task in completion_items is finished; never describe it as in progress, pending or under way. "
             "Preserve blocker causes; do not reinterpret extraction confidence as deadline certainty. "
             "status_conflicts indicate stale CSV statuses to reconcile, not unfinished or overdue tasks. "
             "Never say a whole project is finished. Avoid unsupported judgments such as on track. "

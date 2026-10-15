@@ -1,7 +1,7 @@
 [
   {
     "sample": "sample-1",
-    "model": "workbuddy-deepseek-v4.1-flash",
+    "model": "gpt-oss-120b-medium",
     "report_date": "2026-10-14",
     "stats": {
       "projects": {
@@ -10,10 +10,14 @@
           "blockers": 1,
           "owners": [
             "Mira",
-            "Nia"
+            "Nia",
+            "Lee"
           ],
           "in_progress": [
             "mobile polish"
+          ],
+          "blocker_details": [
+            "waiting on client for copy approval"
           ]
         },
         "Beacon": {
@@ -24,7 +28,11 @@
             "Omar",
             "Lee"
           ],
-          "in_progress": []
+          "in_progress": [],
+          "blocker_details": [
+            "login edge case still failing",
+            "waiting on Jon's login fix"
+          ]
         },
         "Cedar": {
           "completed": 3,
@@ -33,7 +41,8 @@
             "Kai",
             "Omar"
           ],
-          "in_progress": []
+          "in_progress": [],
+          "blocker_details": []
         }
       },
       "completion_items": {
@@ -54,7 +63,8 @@
           {
             "task": "QA checklist",
             "sources": [
-              "Text: Mira"
+              "Text: Mira",
+              "Text: Lee"
             ]
           }
         ],
@@ -150,27 +160,30 @@
     },
     "status": "ok",
     "summaries": {
-      "internal": "For Atlas, Mira's landing page and QA checklist are complete, Nia's capacity review is done, and Nia is still waiting on client copy approval, while Mira's mobile polish remains pending for Fri (layout misalignment and a broken thousand separator). For Beacon, Omar's email copy and Lee's release notes review are finished, but Jon's onboarding flow isn't done yet because a login edge case is still failing, and Lee notes onboarding flow is waiting on Jon's login fix. For Cedar, Kai's dashboard draft and export button are delivered, and Omar's documentation review is in progress; the charts still look slightly off on mobile, with responsive layout work to follow.\n\nNumbers from source:\n- [Fictional Northwind Studio chat, report date 2026-10-13]",
-      "client-facing": "For Atlas, Mira's landing page and QA checklist are done, Nia's capacity review is done, and Mira's mobile polish is planned; Nia is blocked pending client copy approval. For Beacon, Lee's release notes review and Omar's email copy are done, Jon's onboarding flow is still in progress pending a login edge case fix, and Lee notes onboarding flow is waiting on that fix. For Cedar, Kai's dashboard draft and export button are done, and Omar's documentation review is done.\n\nNumbers from source:\n- [Fictional Northwind Studio chat, report date 2026-10-13]"
+      "internal": "Atlas completed capacity review, landing page, and QA checklist; pending mobile polish is planned for 2026-10-16, and Nia reports a blocker on capacity review awaiting client copy approval. Beacon completed release notes review and email copy; onboarding flow remains in progress with Jon blocked by a failing login edge case, and Lee notes a blocker on release notes review awaiting Jon’s login fix. Cedar completed dashboard draft, export button, and documentation review with no pending work or reported blockers.",
+      "client-facing": "Atlas – completed tasks: capacity review (Nia), landing page (Mira) and QA checklist (Mira/Lee). Mobile polish is planned for 2026-10-16, and Nia is blocked awaiting client copy approval for the capacity review.  \n\nBeacon – completed tasks: release notes review (Lee) and email copy (Omar). The onboarding flow remains in progress (due 2026-10-11); Jon reports a login edge case still failing, and Lee is waiting on Jon’s login fix.  \n\nCedar – completed tasks: dashboard draft (Kai), export button (Kai) and documentation review (Omar). No pending work or blockers were reported."
     },
-    "elapsed_seconds": 13.849,
-    "total_tokens": 7437
+    "elapsed_seconds": 43.793,
+    "total_tokens": 9071
   },
   {
     "sample": "sample-2",
-    "model": "workbuddy-deepseek-v4.1-flash",
+    "model": "gpt-oss-120b-medium",
     "report_date": "2026-10-14",
     "stats": {
       "projects": {
         "Atlas": {
           "completed": 2,
-          "blockers": 2,
+          "blockers": 1,
           "owners": [
             "Mira",
             "Lee"
           ],
           "in_progress": [
             "handoff"
+          ],
+          "blocker_details": [
+            "legal approval pending"
           ]
         },
         "Beacon": {
@@ -182,6 +195,9 @@
           ],
           "in_progress": [
             "retries"
+          ],
+          "blocker_details": [
+            "waiting on client for test credentials"
           ]
         },
         "Cedar": {
@@ -193,7 +209,8 @@
           ],
           "in_progress": [
             "pagination"
-          ]
+          ],
+          "blocker_details": []
         }
       },
       "completion_items": {
@@ -291,15 +308,15 @@
     },
     "status": "ok",
     "summaries": {
-      "internal": "**Atlas:** Mira completed the prototype; Lee completed the accessibility pass, and the handoff is blocked by pending legal approval (\"法律审批仍然待定\").  \n**Beacon:** Jon and Omar both completed webhook tests (same set, not new), and Omar completed the API guide; Jon's retries are next and blocked, with \"still waiting on client for test credentials\" as the cause.  \n**Cedar:** Kai completed dashboard filters, and Nia completed the data dictionary; Kai's pagination is planned, and Kai will fix \"pagnation\" in that code tomorrow.\n\nNumbers from source:\n- [Fictional Northwind Studio chat, report date 2026-10-13]",
-      "client-facing": "For Atlas, Mira’s prototype is done and Lee’s accessibility pass is done; the handoff is blocked because legal approval is still pending, and the customer would like to review the color scheme again. For Beacon, Jon’s webhook tests and Omar’s API guide are done; retries are next and are not completed, and work is still waiting on client test credentials. For Cedar, Kai’s dashboard filters are done and Nia’s data dictionary is done; Kai’s pagination work is planned for tomorrow.\n\nNumbers from source:\n- [Fictional Northwind Studio chat, report date 2026-10-13]"
+      "internal": "Atlas – prototype (Mira, due 2026-10-12) and accessibility pass (Lee, due 2026-10-13) are completed; handoff (Mira, due 2026-10-16) is blocked, with Lee reporting legal approval pending.  \n\nBeacon – API guide (Omar, due 2026-10-14) and webhook tests (Jon, due 2026-10-12) are completed; retries (Jon, due 2026-10-11) is blocked, waiting on client for test credentials.  \n\nCedar – dashboard filters (Kai, due 2026-10-13) and data dictionary (Nia, due 2026-10-14) are completed; pagination (Kai, due 2026-10-15) is planned.",
+      "client-facing": "Atlas: Mira completed the prototype and Lee completed the accessibility pass; Mira’s handoff remains blocked, and Lee notes a blocker – legal approval pending.  \n\nBeacon: Omar completed the API guide and Jon (with Omar) completed the webhook tests; Jon’s retries are blocked, awaiting client test credentials.  \n\nCedar: Kai completed the dashboard filters and Nia completed the data dictionary; Kai’s pagination is planned for tomorrow."
     },
-    "elapsed_seconds": 12.75,
-    "total_tokens": 7133
+    "elapsed_seconds": 42.169,
+    "total_tokens": 7924
   },
   {
     "sample": "sample-3",
-    "model": "workbuddy-deepseek-v4.1-flash",
+    "model": "gpt-oss-120b-medium",
     "report_date": "2026-10-14",
     "stats": {
       "projects": {
@@ -310,7 +327,13 @@
             "Mira",
             "Lee"
           ],
-          "in_progress": []
+          "in_progress": [
+            "production release"
+          ],
+          "blocker_details": [
+            "waiting on client to approve the maintenance window",
+            "waiting on maintenance window"
+          ]
         },
         "Beacon": {
           "completed": 2,
@@ -319,7 +342,12 @@
             "Jon",
             "Omar"
           ],
-          "in_progress": []
+          "in_progress": [
+            "performance tuning"
+          ],
+          "blocker_details": [
+            "waiting on client for sign-off"
+          ]
         },
         "Cedar": {
           "completed": 3,
@@ -330,7 +358,8 @@
           ],
           "in_progress": [
             "currency mapping"
-          ]
+          ],
+          "blocker_details": []
         }
       },
       "completion_items": {
@@ -434,10 +463,10 @@
     },
     "status": "ok",
     "summaries": {
-      "internal": "Atlas: Lee completed the release checklist, and Mira's deployment notes are done, but the production release remains blocked pending the client's approval of the maintenance window; deployment is still only planned for Fri. Beacon: Jon's smoke tests and Omar's support FAQ are both complete, though the FAQ is still awaiting client sign-off; performance tuning remains in progress. Cedar: Nia's chart labels, Kai's billing export (also confirmed by Nia), and the archived migration are complete, while currency mapping is still planned with a typo to fix tomorrow.\n\nNumbers from source:\n- [Fictional Northwind Studio chat, report date 2026-10-13]",
-      "client-facing": "For Atlas, Mira’s deployment notes are done and Lee’s release checklist is complete, though production release remains blocked pending the maintenance window; Mira is still waiting on client approval and Lee’s deployment is only planned by Fri. For Beacon, Jon’s smoke tests are done and Omar’s support FAQ is complete, but sign-off is still pending and performance tuning is still being worked on. For Cedar, Kai’s billing export and Nia’s chart labels are finished, with Nia confirming the billing export as the same task Kai raised; Kai’s currency mapping has a typo in the thousands marker and will be handled tomorrow, and the archived migration completion is recorded only in the task table.\n\nNumbers from source:\n- [Fictional Northwind Studio chat, report date 2026-10-13]"
+      "internal": "Atlas – completed release checklist (Lee) and deployment notes (Mira); production release is blocked, with Mira waiting on client approval of the maintenance window and Lee waiting on the maintenance window.  \n\nBeacon – completed smoke tests (Jon) and support FAQ (Omar); performance tuning is still in progress (Jon) and Omar’s support FAQ is awaiting client sign-off.  \n\nCedar – completed chart labels (Nia), archived migration (Kai) and billing export (Kai, Nia); currency mapping is planned (Kai) with no reported blockers.",
+      "client-facing": "For Atlas, Mira completed deployment notes (due 2026-10-12) and Lee completed the release checklist (due 2026-10-13); pending work includes the production release (due 2026-10-16) which Lee reports as blocked awaiting the maintenance window, and Mira notes a blocker awaiting client approval of the maintenance window for the deployment notes.  \n\nFor Beacon, Jon completed smoke tests (due 2026-10-13) and Omar completed the support FAQ (due 2026-10-14); pending work includes performance tuning (due 2026-10-12) which is in progress, and Omar reports a blocker awaiting client sign-off for the FAQ.  \n\nFor Cedar, Nia completed chart labels (due 2026-10-14) and Kai completed billing export (due 2026-10-12) and the archived migration (due 2026-10-09); pending work is currency mapping (due 2026-10-15) which Kai plans to address next, with no reported blockers."
     },
-    "elapsed_seconds": 12.827,
-    "total_tokens": 7405
+    "elapsed_seconds": 56.059,
+    "total_tokens": 11835
   }
 ]

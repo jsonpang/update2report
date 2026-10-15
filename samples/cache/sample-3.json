@@ -13,9 +13,9 @@
         "waiting on client to approve the maintenance window"
       ],
       "due_dates": [
-        "Fri"
+        "2026-10-12"
       ],
-      "confidence": 0.9
+      "confidence": 1.0
     },
     {
       "person": "Jon",
@@ -23,10 +23,15 @@
       "done": [
         "smoke tests"
       ],
-      "next": [],
+      "next": [
+        "performance tuning"
+      ],
       "blockers": [],
-      "due_dates": [],
-      "confidence": 0.9
+      "due_dates": [
+        "2026-10-13",
+        "2026-10-12"
+      ],
+      "confidence": 1.0
     },
     {
       "person": "Kai",
@@ -39,9 +44,10 @@
       ],
       "blockers": [],
       "due_dates": [
-        "tomorrow"
+        "2026-10-12",
+        "2026-10-15"
       ],
-      "confidence": 0.9
+      "confidence": 1.0
     },
     {
       "person": "Nia",
@@ -52,8 +58,11 @@
       ],
       "next": [],
       "blockers": [],
-      "due_dates": [],
-      "confidence": 0.9
+      "due_dates": [
+        "2026-10-14",
+        "2026-10-12"
+      ],
+      "confidence": 1.0
     },
     {
       "person": "Omar",
@@ -65,8 +74,10 @@
       "blockers": [
         "waiting on client for sign-off"
       ],
-      "due_dates": [],
-      "confidence": 0.9
+      "due_dates": [
+        "2026-10-14"
+      ],
+      "confidence": 1.0
     },
     {
       "person": "Lee",
@@ -74,27 +85,23 @@
       "done": [
         "release checklist"
       ],
-      "next": [],
-      "blockers": [
-        "production release blocked, waiting for maintenance window"
+      "next": [
+        "production release"
       ],
-      "due_dates": [],
-      "confidence": 0.9
-    },
-    {
-      "person": "Kai",
-      "project": "Cedar",
-      "done": [],
-      "next": [],
-      "blockers": [],
-      "due_dates": [],
-      "confidence": 0.9
+      "blockers": [
+        "waiting on maintenance window"
+      ],
+      "due_dates": [
+        "2026-10-13",
+        "2026-10-16"
+      ],
+      "confidence": 1.0
     }
   ],
   "summaries": {
-    "internal": "Atlas: Lee completed the release checklist, and Mira's deployment notes are done, but the production release remains blocked pending the client's approval of the maintenance window; deployment is still only planned for Fri. Beacon: Jon's smoke tests and Omar's support FAQ are both complete, though the FAQ is still awaiting client sign-off; performance tuning remains in progress. Cedar: Nia's chart labels, Kai's billing export (also confirmed by Nia), and the archived migration are complete, while currency mapping is still planned with a typo to fix tomorrow.\n\nNumbers from source:\n- [Fictional Northwind Studio chat, report date 2026-10-13]",
-    "client-facing": "For Atlas, Mira’s deployment notes are done and Lee’s release checklist is complete, though production release remains blocked pending the maintenance window; Mira is still waiting on client approval and Lee’s deployment is only planned by Fri. For Beacon, Jon’s smoke tests are done and Omar’s support FAQ is complete, but sign-off is still pending and performance tuning is still being worked on. For Cedar, Kai’s billing export and Nia’s chart labels are finished, with Nia confirming the billing export as the same task Kai raised; Kai’s currency mapping has a typo in the thousands marker and will be handled tomorrow, and the archived migration completion is recorded only in the task table.\n\nNumbers from source:\n- [Fictional Northwind Studio chat, report date 2026-10-13]"
+    "internal": "Atlas – completed release checklist (Lee) and deployment notes (Mira); production release is blocked, with Mira waiting on client approval of the maintenance window and Lee waiting on the maintenance window.  \n\nBeacon – completed smoke tests (Jon) and support FAQ (Omar); performance tuning is still in progress (Jon) and Omar’s support FAQ is awaiting client sign-off.  \n\nCedar – completed chart labels (Nia), archived migration (Kai) and billing export (Kai, Nia); currency mapping is planned (Kai) with no reported blockers.",
+    "client-facing": "For Atlas, Mira completed deployment notes (due 2026-10-12) and Lee completed the release checklist (due 2026-10-13); pending work includes the production release (due 2026-10-16) which Lee reports as blocked awaiting the maintenance window, and Mira notes a blocker awaiting client approval of the maintenance window for the deployment notes.  \n\nFor Beacon, Jon completed smoke tests (due 2026-10-13) and Omar completed the support FAQ (due 2026-10-14); pending work includes performance tuning (due 2026-10-12) which is in progress, and Omar reports a blocker awaiting client sign-off for the FAQ.  \n\nFor Cedar, Nia completed chart labels (due 2026-10-14) and Kai completed billing export (due 2026-10-12) and the archived migration (due 2026-10-09); pending work is currency mapping (due 2026-10-15) which Kai plans to address next, with no reported blockers."
   },
   "report_date": "2026-10-14",
-  "model": "workbuddy-deepseek-v4.1-flash"
+  "model": "gpt-oss-120b-medium"
 }

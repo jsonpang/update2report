@@ -13,10 +13,10 @@
       ],
       "blockers": [],
       "due_dates": [
-        "by Fri",
+        "2026-10-12",
         "2026-10-16"
       ],
-      "confidence": 0.9
+      "confidence": 1.0
     },
     {
       "person": "Jon",
@@ -28,13 +28,13 @@
         "retries"
       ],
       "blockers": [
-        "still waiting on client for test credentials"
+        "waiting on client for test credentials"
       ],
       "due_dates": [
-        "2026-10-11",
-        "2026-10-12"
+        "2026-10-12",
+        "2026-10-11"
       ],
-      "confidence": 0.95
+      "confidence": 1.0
     },
     {
       "person": "Kai",
@@ -50,7 +50,7 @@
         "2026-10-13",
         "2026-10-15"
       ],
-      "confidence": 0.95
+      "confidence": 1.0
     },
     {
       "person": "Nia",
@@ -63,7 +63,7 @@
       "due_dates": [
         "2026-10-14"
       ],
-      "confidence": 0.85
+      "confidence": 1.0
     },
     {
       "person": "Omar",
@@ -75,9 +75,10 @@
       "next": [],
       "blockers": [],
       "due_dates": [
-        "2026-10-14"
+        "2026-10-14",
+        "2026-10-12"
       ],
-      "confidence": 0.9
+      "confidence": 1.0
     },
     {
       "person": "Lee",
@@ -87,20 +88,19 @@
       ],
       "next": [],
       "blockers": [
-        "legal approval still pending",
-        "handoff 卡在这"
+        "legal approval pending"
       ],
       "due_dates": [
         "2026-10-13",
         "2026-10-16"
       ],
-      "confidence": 0.9
+      "confidence": 1.0
     }
   ],
   "summaries": {
-    "internal": "**Atlas:** Mira completed the prototype; Lee completed the accessibility pass, and the handoff is blocked by pending legal approval (\"法律审批仍然待定\").  \n**Beacon:** Jon and Omar both completed webhook tests (same set, not new), and Omar completed the API guide; Jon's retries are next and blocked, with \"still waiting on client for test credentials\" as the cause.  \n**Cedar:** Kai completed dashboard filters, and Nia completed the data dictionary; Kai's pagination is planned, and Kai will fix \"pagnation\" in that code tomorrow.\n\nNumbers from source:\n- [Fictional Northwind Studio chat, report date 2026-10-13]",
-    "client-facing": "For Atlas, Mira’s prototype is done and Lee’s accessibility pass is done; the handoff is blocked because legal approval is still pending, and the customer would like to review the color scheme again. For Beacon, Jon’s webhook tests and Omar’s API guide are done; retries are next and are not completed, and work is still waiting on client test credentials. For Cedar, Kai’s dashboard filters are done and Nia’s data dictionary is done; Kai’s pagination work is planned for tomorrow.\n\nNumbers from source:\n- [Fictional Northwind Studio chat, report date 2026-10-13]"
+    "internal": "Atlas – prototype (Mira, due 2026-10-12) and accessibility pass (Lee, due 2026-10-13) are completed; handoff (Mira, due 2026-10-16) is blocked, with Lee reporting legal approval pending.  \n\nBeacon – API guide (Omar, due 2026-10-14) and webhook tests (Jon, due 2026-10-12) are completed; retries (Jon, due 2026-10-11) is blocked, waiting on client for test credentials.  \n\nCedar – dashboard filters (Kai, due 2026-10-13) and data dictionary (Nia, due 2026-10-14) are completed; pagination (Kai, due 2026-10-15) is planned.",
+    "client-facing": "Atlas: Mira completed the prototype and Lee completed the accessibility pass; Mira’s handoff remains blocked, and Lee notes a blocker – legal approval pending.  \n\nBeacon: Omar completed the API guide and Jon (with Omar) completed the webhook tests; Jon’s retries are blocked, awaiting client test credentials.  \n\nCedar: Kai completed the dashboard filters and Nia completed the data dictionary; Kai’s pagination is planned for tomorrow."
   },
   "report_date": "2026-10-14",
-  "model": "workbuddy-deepseek-v4.1-flash"
+  "model": "gpt-oss-120b-medium"
 }

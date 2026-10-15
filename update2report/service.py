@@ -6,7 +6,7 @@ from pathlib import Path
 from .schemas import UpdateBundle
 from .stats import calculate_stats, csv_task_rows
 from .compose import compose_summary, validate_summary_numbers
-from .evidence import missing_numbers, validate_identities
+from .evidence import missing_numbers, validate_identities, without_header
 from .render_html import render_html
 from .render_excel import render_excel
 from .llm import LLMClient
@@ -80,7 +80,7 @@ def generate_report(text, csv_path=None, tone='internal', sample_id=None, client
         source = text + '\n' + json.dumps(tasks, ensure_ascii=False)
         validate_summary_numbers(summary, stats, source_text=source)
         validate_identities(summary, source)
-        if missing_numbers(text, summary):
+        if missing_numbers(without_header(text), summary):
             raise ValueError('Cached summary is missing source numbers; refresh the sample cache.')
     else:
         summary = compose_summary(client, updates, stats, tone, source_text=text, tasks=tasks)
