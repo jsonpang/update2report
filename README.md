@@ -13,7 +13,7 @@ license: mit
 
 # Update2Report
 
-Turn messy team notes into a printable weekly HTML report and an Excel workbook. Open-weight models are the core of Update2Report—they extract structured tasks from unstructured updates and draft natural summaries, while deterministic Python code computes trusted statistics and cross-checks every number in the summary against ground truth. The public demo runs OpenAI's open-weight gpt-oss-120b (Apache 2.0) through an OpenAI-compatible gateway; point `LLM_BASE_URL` at another provider or a local Ollama instance to use a different backend. All bundled Northwind Studio data is fictional.
+Turn messy team notes into a printable weekly HTML report and an Excel workbook. Open-weight models are the core of Update2Report—they extract structured tasks from unstructured updates and draft natural summaries, while deterministic Python code computes trusted statistics and cross-checks every number in the summary against ground truth. The public demo runs DeepSeek's open-weight DeepSeek-V4.1-Flash (MIT) through an OpenAI-compatible gateway, with OpenAI's open-weight gpt-oss-120b (Apache 2.0) as the fallback model; point `LLM_BASE_URL` at another provider or a local Ollama instance to use a different backend. All bundled Northwind Studio data is fictional.
 
 ## Run locally
 
