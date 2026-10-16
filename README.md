@@ -18,8 +18,8 @@ Turn messy team notes into a printable weekly HTML report and an Excel workbook.
 ## Run locally
 
 ```powershell
-git clone https://github.com/jsonpang/weeklyreport-ai.git
-cd weeklyreport-ai
+git clone https://github.com/jsonpang/update2report.git
+cd update2report
 python -m pip install -r requirements.txt
 Copy-Item .env.example .env
 # Edit .env with your own endpoint, key and model, then start:
